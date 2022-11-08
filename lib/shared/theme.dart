@@ -51,12 +51,14 @@ Color kRedColor = Color(0xffF93D45);
 Color kBlueColor = Color(0xff308CF8);
 
 Color kOrangeColor = Color(0xFFFFA235);
+Color kGoldColor = Color(0xFFFFC30B);
+
 Color kPrimaryColor = Color(0xff308CF8);
 Color kBlackColor = Color(0xff0D2841);
 Color kWhiteColor = Color(0xffFFFFFF);
 Color kGreyColor = Color(0xff807BB0);
-Color kGrey2Color = Color(0xff6D7AA9);
-Color kGrey3Color = Color(0xffC6BDC2);
+Color kGrey2Color = Color(0xffF4F4F4);
+Color kGrey3Color = Color(0xff9698A9);
 
 Color kSubtitleColor = Color(0xff6164A5);
 
@@ -78,12 +80,16 @@ TextStyle greyTextStyle = GoogleFonts.poppins(
 TextStyle grey2TextStyle = GoogleFonts.poppins(
   color: kGrey2Color,
 );
+TextStyle grey3TextStyle = GoogleFonts.poppins(
+  color: kGrey3Color,
+);
 TextStyle greenTextStyle = GoogleFonts.poppins(
   color: kGreenColor,
 );
 TextStyle subtitleTextStyle = GoogleFonts.poppins(
   color: kSubtitleColor,
 );
+
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;

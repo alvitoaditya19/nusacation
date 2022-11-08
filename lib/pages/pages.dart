@@ -45,6 +45,8 @@ part 'menu_page.dart';
 part 'main_page.dart';
 
 part 'edit_profile.dart';
+part 'profile_page.dart';
+
 
 
 

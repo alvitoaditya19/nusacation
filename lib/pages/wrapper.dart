@@ -36,10 +36,9 @@ class _WrapperState extends State<Wrapper> {
                         : (pageState is OnAccountConfirmationPage)
                             ? AccountConfirmationPage(
                                 pageState.registrationData)
-                            : (pageState is OnMenuPage)
-                                ? MenuPage()
+                      
                                 : (pageState is OnEditProfilePage)
                                     ? EditProfilePage(pageState.user)
-                                    : MenuPage());
+                                    : MainPage());
   }
 }

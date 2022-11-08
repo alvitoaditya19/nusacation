@@ -42,110 +42,24 @@ class _MainPageState extends State<MainPage> {
                 bottomNavBarIndex = index;
               });
             },
-            children: <Widget>[MenuPage()],
+            children: <Widget>[MenuPage(), ProfilePage()],
           ),
           createCustomBottomNavBar(),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 70,
-              width: 70,
-              margin: EdgeInsets.only(bottom: 25),
+              height: 66,
+              width: 66,
+              margin: EdgeInsets.only(bottom: 40),
               child: FloatingActionButton(
                 elevation: 0,
-                backgroundColor: Colors.yellow,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: Image.asset("assets/icon_other.png"),
-                  ),
+                backgroundColor: kBlueColor,
+                child: SizedBox(
+                  height: 44,
+                  width: 44,
+                  child: Image.asset("assets/ic-topup.png"),
                 ),
-                onPressed: () async {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          contentPadding: EdgeInsets.only(
-                            right: 8,
-                            left: 8,
-                            bottom: 20,
-                          ),
-                          title: Text('Additional Menu',
-                              style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              )),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          content: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                
-                                  },
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      'assets/icon_lamp.png',
-                                      width: 44,
-                                      height: 44,
-                                    ),
-                                    title: Text(
-                                      'Tips Kesehatan',
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                GestureDetector(
-                                  onTap: () {
-                             
-                                  },
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      'assets/icon_news.png',
-                                      width: 44,
-                                      height: 44,
-                                    ),
-                                    title: Text(
-                                      'Berita Kesehatan',
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                GestureDetector(
-                                  onTap: () {
-                                  
-                                  },
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      'assets/icon_cal.png',
-                                      width: 44,
-                                      height: 44,
-                                    ),
-                                    title: Text(
-                                      'Perhitungan BMI',
-                                      style: blackTextStyle.copyWith(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      });
-                },
+                onPressed: () async {},
               ),
             ),
           )
@@ -160,66 +74,85 @@ class _MainPageState extends State<MainPage> {
           clipper: BottomNavBarClipper(),
           child: Container(
             height: 70,
-            decoration: BoxDecoration(
-                color: kWhiteColor,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20))),
-            child: BottomNavigationBar(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                selectedItemColor: Colors.black,
-                unselectedItemColor: Color(0xFF999999),
-                currentIndex: bottomNavBarIndex!,
-                onTap: (index) {
-                  setState(() {
-                    bottomNavBarIndex = index;
-                    pageController!.jumpToPage(index);
-                  });
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    label: Text(
-                      "Menu Utama",
-                      style: (bottomNavBarIndex == 0)
-                          ? blueTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: medium,
-                            )
-                          : greyTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: medium,
-                            ),
-                    ).toString(),
-                    icon: Image.asset(
-                      (bottomNavBarIndex == 0)
-                          ? "assets/icon_dct1.png"
-                          : "assets/icon_dct2.png",
-                      height: 32,
-                      width: 70,
-                    ),
-                  ),
-                  BottomNavigationBarItem(
-                      label: Text(
-                        "Pesanan Saya",
-                        style: (bottomNavBarIndex == 1)
-                            ? blueTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: medium,
-                              )
-                            : greyTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: medium,
-                              ),
-                      ).toString(),
-                      icon: Container(
-                        height: 26,
-                        margin: EdgeInsets.only(bottom: 5),
-                        child: Image.asset((bottomNavBarIndex == 1)
-                            ? "assets/icon_ticket1.png"
-                            : "assets/icon_ticket2.png"),
-                      ))
-                ]),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: BottomNavigationBar(
+                  elevation: 0,
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  backgroundColor: kGrey2Color,
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: Colors.black,
+                  currentIndex: bottomNavBarIndex!,
+                  onTap: (index) {
+                    setState(() {
+                      bottomNavBarIndex = index;
+                      pageController!.jumpToPage(index);
+                    });
+                  },
+                  items: [
+                    BottomNavigationBarItem(
+                        label: "",
+                        icon: Container(
+                          height: 26,
+                          margin: EdgeInsets.only(bottom: 5),
+                          child: Image.asset(
+                            (bottomNavBarIndex == 0)
+                                ? "assets/ic-home-act.png"
+                                : "assets/ic-home-inact.png",
+                            height: 24,
+                            width: 24,
+                          ),
+                        )),
+                    BottomNavigationBarItem(
+                        label: "",
+                        icon: Container(
+                          height: 26,
+                          margin: EdgeInsets.only(bottom: 5),
+                          child: Image.asset(
+                            (bottomNavBarIndex == 1)
+                                ? "assets/ic-book-act.png"
+                                : "assets/ic-book-inact.png",
+                            height: 24,
+                            width: 24,
+                          ),
+                        )),
+                    BottomNavigationBarItem(
+                        label: "",
+                        icon: Container(
+                          height: 26,
+                        )),
+                    BottomNavigationBarItem(
+                        label: "",
+                        icon: Container(
+                          height: 26,
+                          margin: EdgeInsets.only(bottom: 5),
+                          child: Image.asset(
+                            (bottomNavBarIndex == 2)
+                                ? "assets/ic-like-act.png"
+                                : "assets/ic-like-inact.png",
+                            height: 24,
+                            width: 24,
+                          ),
+                        )),
+                    BottomNavigationBarItem(
+                        label: "",
+                        icon: Container(
+                          height: 26,
+                          margin: EdgeInsets.only(bottom: 5),
+                          child: Image.asset(
+                            (bottomNavBarIndex == 3)
+                                ? "assets/ic-prof-act.png"
+                                : "assets/ic-prof-inact.png",
+                            height: 24,
+                            width: 24,
+                          ),
+                        ))
+                  ]),
+            ),
           ),
         ),
       );
@@ -230,16 +163,14 @@ class BottomNavBarClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     Path path = Path();
 
-    path.moveTo(0, 20); // Start
-    path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
-    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
-    path.arcToPoint(Offset(size.width * 0.60, 20),
-        radius: Radius.circular(20.0), clockwise: false);
-    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
+    path.lineTo(size.width / 2 - 38, 0);
+
+    path.quadraticBezierTo(size.width / 2 - 38, 42, size.width / 2, 42);
+    path.quadraticBezierTo(size.width / 2 + 38, 42, size.width / 2 + 38, 0);
+    path.lineTo(size.width, 0);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
-    path.lineTo(0, 20);
+    path.close();
 
     return path;
   }
