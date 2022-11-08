@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nusacation">
+    package="com.avifycom.nusacation">
    <application
         android:label="nusacation"
         android:name="${applicationName}"

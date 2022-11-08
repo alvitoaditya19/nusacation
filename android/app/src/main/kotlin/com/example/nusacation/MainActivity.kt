@@ -1,4 +1,4 @@
-package com.example.nusacation
+package com.avifycom.nusacation
 
 import io.flutter.embedding.android.FlutterActivity
 
