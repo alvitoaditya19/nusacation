@@ -19,8 +19,8 @@ class _SignUpPageState extends State<SignUpPage> {
   void initState() {
     super.initState();
 
-    nameController.text = widget.registrationData!.name!;
-    emailController.text = widget.registrationData!.email!;
+    nameController.text = widget.registrationData!.name;
+    emailController.text = widget.registrationData!.email;
   }
 
   bool _isObscure = true;

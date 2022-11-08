@@ -46,26 +46,23 @@ TextStyle yellowNumberFont =
 
 Color kBackgroundColor2 = Color(0xff22267B);
 Color kGreenColor = Color(0xFF66E0D4);
-Color kRedColor = Color(0xffF93D45);
+Color kRedColor = Color(0xffFF5151);
 
 Color kBlueColor = Color(0xff308CF8);
 
 Color kOrangeColor = Color(0xFFFFA235);
+Color kYellowColor = Color(0xFFFFF56D);
+
 Color kGoldColor = Color(0xFFFFC30B);
 
 Color kPrimaryColor = Color(0xff308CF8);
 Color kBlackColor = Color(0xff0D2841);
 Color kWhiteColor = Color(0xffFFFFFF);
-Color kGreyColor = Color(0xff807BB0);
+Color kGreyColor = Color(0xffC4C4C4);
 Color kGrey2Color = Color(0xffF4F4F4);
 Color kGrey3Color = Color(0xff9698A9);
 
 Color kSubtitleColor = Color(0xff6164A5);
-
-
-
-Color kYellowColor = Color(0xffFFD654);
-
 
 
 TextStyle blackTextStyle = GoogleFonts.poppins(
@@ -86,6 +83,10 @@ TextStyle grey3TextStyle = GoogleFonts.poppins(
 TextStyle greenTextStyle = GoogleFonts.poppins(
   color: kGreenColor,
 );
+TextStyle redTextStyle = GoogleFonts.poppins(
+  color: kRedColor,
+);
+
 TextStyle subtitleTextStyle = GoogleFonts.poppins(
   color: kSubtitleColor,
 );

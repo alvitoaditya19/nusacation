@@ -12,22 +12,28 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  int _bottomNavCurrentIndex = 0;
-  List<Widget> _container = [];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final fb = FirebaseDatabase.instance;
-  TextEditingController _textFieldControllerTanggal = TextEditingController();
-  TextEditingController _textFieldControllerWaktu = TextEditingController();
+  final List<String> imgList = [
+    'assets/img_sing2.png',
+    'assets/img_continue1.png',
+    'assets/img_sing2.png',
+  ];
 
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
 
-
-
+  int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -124,10 +130,7 @@ class _MenuPageState extends State<MenuPage> {
                       child: Container(
                         height: 54,
                         width: 54,
-                        padding: EdgeInsets.only(
-                          left: 6,
-                          bottom: 2
-                        ),
+                        padding: EdgeInsets.only(left: 6, bottom: 2),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: kWhiteColor,
@@ -162,11 +165,10 @@ class _MenuPageState extends State<MenuPage> {
         ]),
       );
     }
- Widget searchDestination() {
+
+    Widget searchDestination() {
       return GestureDetector(
-        onTap: () {
-         
-        },
+        onTap: () {},
         child: Container(
           height: 50,
           padding: EdgeInsets.symmetric(
@@ -199,6 +201,410 @@ class _MenuPageState extends State<MenuPage> {
       );
     }
 
+    Widget packetRecommended() {
+      return Container(
+        height: 200,
+        margin: EdgeInsets.only(top: 14, bottom: 14),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            // height: 198,
+            // margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 0),
+            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+            child: Stack(
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 200,
+                    viewportFraction: 1,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    pauseAutoPlayOnTouch: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                  items: imgList
+                      .map((item) => Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(item),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ))
+                      .toList(),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Spacer(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 12, bottom: 24),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: map<Widget>(imgList, (index, url) {
+                              return Container(
+                                width: 12.0,
+                                height: 12.0,
+                                margin: EdgeInsets.only(right: 8),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: _currentIndex == index
+                                      ? kBlueColor
+                                      : kGrey2Color,
+                                ),
+                              );
+                            }),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            )),
+      );
+    }
+
+    Widget recommended() {
+      return Container(
+        margin:
+            EdgeInsets.only(left: defaultMargin, right: defaultMargin, top: 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Recommended',
+              style: blackTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: medium,
+              ),
+            ),
+            packetRecommended(),
+            SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.19,
+                    decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/ic-hotels.png",
+                          height: 32,
+                          width: 32,
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          'Hotels',
+                          style: blueTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.19,
+                    decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/ic-bus.png",
+                          height: 32,
+                          width: 32,
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          'Transport',
+                          style: blueTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.19,
+                    decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/ic-guide.png",
+                          height: 32,
+                          width: 32,
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          'Guide Tour',
+                          style: blueTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70,
+                    width: MediaQuery.of(context).size.width * 0.19,
+                    decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/ic-info.png",
+                          height: 32,
+                          width: 32,
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          'Info',
+                          style: blueTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+    }
+
+    Widget vacationSpotTitle() {
+      return Container(
+        margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                'Vacation Spot',
+                style: blackTextStyle.copyWith(
+                  fontWeight: medium,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.fiber_manual_record,
+              size: 26,
+              color: kBlueColor,
+            ),
+            Icon(
+              Icons.fiber_manual_record,
+              size: 26,
+              color: kBlueColor,
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget vacationSpot() {
+      return Container(
+        margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: kWhiteColor,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 174,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      AssetImage("assets/img-vacation1.png"))),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Flores, NTT',
+                                    style: greyTextStyle.copyWith(
+                                      fontWeight: light,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text(
+                                    'Pulau Komodo Berkunjung',
+                                    style: blackTextStyle.copyWith(
+                                      fontWeight: medium,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text(
+                                    'IDR 421.833',
+                                    style: blueTextStyle.copyWith(
+                                      fontWeight: medium,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Image.asset(
+                              "assets/ic-love-act.png",
+                              height: 40,
+                              width: 40,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: kYellowColor,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(children: [
+                            Text(
+                              '50%',
+                              style: redTextStyle.copyWith(
+                                fontWeight: medium,
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              'OFF',
+                              style: whiteTextStyle.copyWith(
+                                fontWeight: medium,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ]),
+                        ),
+                        Container(
+                          width: 58,
+                          padding: EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      'assets/ic-star.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "4.7",
+                                style: blackTextStyle.copyWith(
+                                  fontWeight: medium,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -207,11 +613,13 @@ class _MenuPageState extends State<MenuPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               header(),
-               SizedBox(
+              SizedBox(
                 height: 14,
               ),
-                searchDestination(),
-
+              searchDestination(),
+              recommended(),
+              vacationSpotTitle(),
+              vacationSpot(),
               SizedBox(
                 height: 80,
               ),
