@@ -80,13 +80,6 @@ class DetailDestinationPage extends StatelessWidget {
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    // Text(
-                                    //   destination!.spesialis!,
-                                    //   style: greyTextStyle.copyWith(
-                                    //     fontSize: 18,
-                                    //     fontWeight: light,
-                                    //   ),
-                                    // )
                                   ],
                                 ),
                               ),
@@ -165,28 +158,37 @@ class DetailDestinationPage extends StatelessWidget {
                         SizedBox(
                           height: 14,
                         ),
-                        // Padding(
-                        //   padding: EdgeInsets.symmetric(
-                        //     horizontal: defaultMargin,
-                        //   ),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       FacilityItem(
-                        //         name: 'Konsultasi',
-                        //         imageUrl: 'assets/icon_chat2.png',
-                        //       ),
-                        //       FacilityItem(
-                        //         name: '10 Jam Kerja',
-                        //         imageUrl: 'assets/icon_alarm.png',
-                        //       ),
-                        //       FacilityItem(
-                        //         name: 'Resep Terbaik',
-                        //         imageUrl: 'assets/icon_drug.png',
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: defaultMargin,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              FacilityItem(
+                                name: 'Restaurant',
+                                height: 10,
+                                imageUrl: 'assets/icon_restaurant.png',
+                              ),
+                              SizedBox(
+                                width: 40,
+                              ),
+                              FacilityItem(
+                                name: 'Hotel',
+                                height: 3,
+                                imageUrl: 'assets/icon_hotel.png',
+                              ),
+                              SizedBox(
+                                width: 40,
+                              ),
+                              FacilityItem(
+                                name: 'Masjid',
+                                height: 4,
+                                imageUrl: 'assets/icon_mosque.png',
+                              ),
+                            ],
+                          ),
+                        ),
                         Container(
                           margin: EdgeInsets.only(
                             top: 18,
@@ -288,15 +290,13 @@ class DetailDestinationPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-
-                        context
-                            .read<FavoritBloc>().setProduct(destination!);
+                        context.read<FavoritBloc>().setProduct(destination!);
                         if (context
                             .read<FavoritBloc>()
                             .isWishlist(destination!)) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              duration: Duration( milliseconds: 700),
+                              duration: Duration(milliseconds: 700),
                               backgroundColor: kBlueColor,
                               content: Text(
                                 'Has been added to the Wishlist',
@@ -307,8 +307,7 @@ class DetailDestinationPage extends StatelessWidget {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              duration: Duration( milliseconds: 700),
-
+                              duration: Duration(milliseconds: 700),
                               backgroundColor: kRedColor,
                               content: Text(
                                 'Has been removed from the Wishlist',

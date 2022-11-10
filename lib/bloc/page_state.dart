@@ -82,6 +82,11 @@ class OnFavoritPage extends PageState {
   List<Object> get props => [];
 }
 
+class OnInfoPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
 class OnDetailDestinationPage extends PageState {
   final DestinationModel destination;
 

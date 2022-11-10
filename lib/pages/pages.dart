@@ -21,7 +21,9 @@ import 'package:nusacation/pages/list_destination.dart';
 import 'package:nusacation/services/services.dart';
 import 'package:nusacation/shared/shared.dart';
 import 'package:nusacation/widgets/destination_card.dart';
+import 'package:nusacation/widgets/facility_item.dart';
 import 'package:nusacation/widgets/favorit_destination_card.dart';
+import 'package:nusacation/widgets/information_card.dart';
 
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -49,6 +51,8 @@ part 'detail_page_one.dart';
 
 
 part 'edit_profile.dart';
+part 'info_page.dart';
+
 part 'profile_page.dart';
 part 'favorit_page.dart';
 part 'ticket_page.dart';

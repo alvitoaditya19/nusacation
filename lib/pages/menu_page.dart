@@ -193,7 +193,7 @@ class _MenuPageState extends State<MenuPage> {
                 width: 10,
               ),
               Text(
-                'Find a Magical Place',
+                'Temukan Tempat Impian Kamu',
                 style: grey3TextStyle,
               ),
             ],
@@ -408,7 +408,9 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                   context.read<PageBloc>().add(GoToInfoPage());
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 70,

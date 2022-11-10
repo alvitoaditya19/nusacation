@@ -43,6 +43,8 @@ class _WrapperState extends State<Wrapper> {
                                     ? ProfilePage()
                                     : (pageState is OnFavoritPage)
                                         ? FavoritPage()
+                                         : (pageState is OnInfoPage)
+                                        ? InfoPage()
                                         : (pageState is OnEditProfilePage)
                                             ? EditProfilePage(pageState.user)
                                             : MainPage());
