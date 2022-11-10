@@ -72,9 +72,32 @@ class OnMenuPage extends PageState {
   List<Object> get props => [];
 }
 
-class OnProfileScreen extends PageState {
+class OnProfilePage extends PageState {
   @override
   List<Object> get props => [];
+}
+
+class OnFavoritPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnDetailDestinationPage extends PageState {
+  final DestinationModel destination;
+
+  OnDetailDestinationPage(this.destination);
+  
+  @override
+  List<Object> get props => [destination];
+}
+
+class OnMainPage extends PageState {
+  final int bottomNavBarIndex;
+
+  OnMainPage({this.bottomNavBarIndex = 0});
+
+  @override
+  List<Object> get props => [bottomNavBarIndex];
 }
 
 class OnEditProfilePage extends PageState {

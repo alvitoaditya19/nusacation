@@ -67,9 +67,32 @@ class GoToMenuPage extends PageEvent {
   List<Object> get props => [];
 }
 
-class GoToProfileScreen extends PageEvent {
+class GoToProfilePage extends PageEvent {
   @override
   List<Object> get props => [];
+}
+
+class GoToFavoritPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToMainPage extends PageEvent {
+  final int bottomNavBarIndex;
+
+  GoToMainPage({this.bottomNavBarIndex = 0});
+
+  @override
+  List<Object> get props => [bottomNavBarIndex];
+}
+
+class GoToDetailDestinationPage extends PageEvent {
+  final DestinationModel destination;
+  
+  GoToDetailDestinationPage(this.destination);
+
+  @override
+  List<Object> get props => [destination];
 }
 
 class GoToEditProfilePage extends PageEvent {

@@ -8,6 +8,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  AutovalidateMode _autoValidate = AutovalidateMode.disabled;
 
   bool isEmailValid = false;
   bool isPasswordValid = false;
@@ -52,6 +53,7 @@ class _SignInPageState extends State<SignInPage> {
                     isEmailValid = EmailValidator.validate(text);
                   });
                 },
+              
                 controller: emailController,
                 cursorColor: kBlackColor,
                 decoration: InputDecoration(
@@ -100,6 +102,8 @@ class _SignInPageState extends State<SignInPage> {
                   });
                 },
                 controller: passwordController,
+
+
                 cursorColor: kBlackColor,
                 obscureText: _isObscure,
                 decoration: InputDecoration(
@@ -136,7 +140,7 @@ class _SignInPageState extends State<SignInPage> {
         );
       }
 
-      Widget signInButton() {
+       Widget signInButton() {
         return Container(
           height: 55,
           width: double.infinity,

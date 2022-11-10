@@ -16,13 +16,14 @@ class _WrapperState extends State<Wrapper> {
         context.read<PageBloc>().add(prevPageEvent!);
       }
     } else {
-      if (!(prevPageEvent is GoToMenuPage)) {
+      if (!(prevPageEvent is GoToMainPage)) {
         context.read<UserBloc>().add(LoadUser(firebaseUser.uid));
 
-        prevPageEvent = GoToMenuPage();
+        prevPageEvent = GoToMainPage();
         context.read<PageBloc>().add(prevPageEvent!);
       }
     }
+
 
     return BlocBuilder<PageBloc, PageState>(
         builder: (_, pageState) => (pageState is OnSplashPage)
@@ -36,9 +37,14 @@ class _WrapperState extends State<Wrapper> {
                         : (pageState is OnAccountConfirmationPage)
                             ? AccountConfirmationPage(
                                 pageState.registrationData)
-                      
-                                : (pageState is OnEditProfilePage)
-                                    ? EditProfilePage(pageState.user)
-                                    : MainPage());
+                            : (pageState is OnDetailDestinationPage)
+                                ? DetailDestinationPage(pageState.destination)
+                                : (pageState is OnProfilePage)
+                                    ? ProfilePage()
+                                    : (pageState is OnFavoritPage)
+                                        ? FavoritPage()
+                                        : (pageState is OnEditProfilePage)
+                                            ? EditProfilePage(pageState.user)
+                                            : MainPage());
   }
 }

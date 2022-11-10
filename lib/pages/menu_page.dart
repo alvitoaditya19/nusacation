@@ -14,6 +14,7 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final fb = FirebaseDatabase.instance;
+  List<DestinationModel> destination = [];
   final List<String> imgList = [
     'assets/img_sing2.png',
     'assets/img_continue1.png',
@@ -243,6 +244,23 @@ class _MenuPageState extends State<MenuPage> {
                       .toList(),
                 ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      height: 120,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                            Colors.black.withOpacity(0),
+                            Colors.black.withOpacity(0.60),
+                          ])),
+                    ),
+                  ],
+                ),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(),
@@ -461,145 +479,15 @@ class _MenuPageState extends State<MenuPage> {
         margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: Stack(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: kWhiteColor,
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 174,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(18),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image:
-                                      AssetImage("assets/img-vacation1.png"))),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Flores, NTT',
-                                    style: greyTextStyle.copyWith(
-                                      fontWeight: light,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 2,
-                                  ),
-                                  Text(
-                                    'Pulau Komodo Berkunjung',
-                                    style: blackTextStyle.copyWith(
-                                      fontWeight: medium,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 2,
-                                  ),
-                                  Text(
-                                    'IDR 421.833',
-                                    style: blueTextStyle.copyWith(
-                                      fontWeight: medium,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Image.asset(
-                              "assets/ic-love-act.png",
-                              height: 40,
-                              width: 40,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: kYellowColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(children: [
-                            Text(
-                              '50%',
-                              style: redTextStyle.copyWith(
-                                fontWeight: medium,
-                                fontSize: 12,
-                              ),
-                            ),
-                            Text(
-                              'OFF',
-                              style: whiteTextStyle.copyWith(
-                                fontWeight: medium,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ]),
-                        ),
-                        Container(
-                          width: 58,
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: kWhiteColor,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      'assets/ic-star.png',
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "4.7",
-                                style: blackTextStyle.copyWith(
-                                  fontWeight: medium,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: listDestination.length,
+              itemBuilder: (BuildContext context, int index) {
+                return DestinationCard(listDestination[index]);
+              },
+            ),
+
+            // DestinationCard()
           ],
         ),
       );

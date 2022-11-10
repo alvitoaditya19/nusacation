@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => PageBloc()),
+            BlocProvider(create: (_) => FavoritBloc()),
+
             BlocProvider(create: (_) => UserBloc()),
             BlocProvider(create: (_) => ThemeBloc()),
 

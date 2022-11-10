@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
+import 'package:nusacation/models/destination_model.dart';
 import 'package:nusacation/models/models.dart';
 
 part 'page_event.dart';
@@ -22,7 +24,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnSplashPage());
     } else if (event is GoToGetStartedPage) {
       emit(OnGetStartedPage());
-    }else if (event is GoToSignInPage) {
+    } else if (event is GoToSignInPage) {
       emit(OnSignInPage());
     } else if (event is GoToSignUpPage) {
       emit(OnSignUpPage());
@@ -32,10 +34,14 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnPreferencePage(event.registrationData));
     } else if (event is GoToAccountConfirmationPage) {
       emit(OnAccountConfirmationPage(event.registrationData));
-    } else if (event is GoToMenuPage) {
-      emit(OnMenuPage());
-    } else if (event is GoToProfileScreen) {
-      emit(OnProfileScreen());
+    } else if (event is GoToMainPage) {
+      emit(OnMainPage(bottomNavBarIndex: event.bottomNavBarIndex));
+    } else if (event is GoToDetailDestinationPage) {
+      emit(OnDetailDestinationPage(event.destination));
+    } else if (event is GoToProfilePage) {
+      emit(OnProfilePage());
+    } else if (event is GoToFavoritPage) {
+      emit(OnFavoritPage());
     } else if (event is GoToEditProfilePage) {
       emit(OnEditProfilePage(event.user));
     }

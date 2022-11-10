@@ -42,7 +42,7 @@ class _MainPageState extends State<MainPage> {
                 bottomNavBarIndex = index;
               });
             },
-            children: <Widget>[MenuPage(), ProfilePage()],
+            children: <Widget>[MenuPage(),TicketPage(), FavoritPage(), ProfilePage()],
           ),
           createCustomBottomNavBar(),
           Align(
@@ -59,7 +59,74 @@ class _MainPageState extends State<MainPage> {
                   width: 44,
                   child: Image.asset("assets/ic-topup.png"),
                 ),
-                onPressed: () async {},
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          insetPadding: EdgeInsets.only(top: 120),
+                          title: Center(
+                            child: Text('Top Up',
+                                style: blackTextStyle.copyWith(
+                                  fontSize: 20,
+                                  fontWeight: medium,
+                                )),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(30),
+                              topLeft: Radius.circular(30),
+                            ),
+                          ),
+                          content: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: ListTile(
+                                    leading: Image.asset(
+                                      'assets/ic-book-act.png',
+                                      width: 44,
+                                      height: 44,
+                                    ),
+                                    title: Text(
+                                      'Tips Kesehatan',
+                                      style: blackTextStyle.copyWith(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 55,
+                                  width: MediaQuery.of(context).size.width*0.8,
+                               
+                                  child: TextButton(
+                                    onPressed: () async {},
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: kBlueColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            8),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Top Up Now',
+                                      style: whiteTextStyle.copyWith(
+                                        fontWeight: medium,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Spacer()
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
               ),
             ),
           )
@@ -98,7 +165,7 @@ class _MainPageState extends State<MainPage> {
                         label: "",
                         icon: Container(
                           height: 26,
-                          margin: EdgeInsets.only(bottom: 5),
+                          margin: EdgeInsets.only(bottom: 5, right: 10),
                           child: Image.asset(
                             (bottomNavBarIndex == 0)
                                 ? "assets/ic-home-act.png"
@@ -111,7 +178,7 @@ class _MainPageState extends State<MainPage> {
                         label: "",
                         icon: Container(
                           height: 26,
-                          margin: EdgeInsets.only(bottom: 5),
+                          margin: EdgeInsets.only(bottom: 5, right: 42),
                           child: Image.asset(
                             (bottomNavBarIndex == 1)
                                 ? "assets/ic-book-act.png"
@@ -120,16 +187,16 @@ class _MainPageState extends State<MainPage> {
                             width: 24,
                           ),
                         )),
+                    // BottomNavigationBarItem(
+                    //     label: "",
+                    //     icon: Container(
+                    //       height: 26,
+                    //     )),
                     BottomNavigationBarItem(
                         label: "",
                         icon: Container(
                           height: 26,
-                        )),
-                    BottomNavigationBarItem(
-                        label: "",
-                        icon: Container(
-                          height: 26,
-                          margin: EdgeInsets.only(bottom: 5),
+                          margin: EdgeInsets.only(bottom: 5, left: 42),
                           child: Image.asset(
                             (bottomNavBarIndex == 2)
                                 ? "assets/ic-like-act.png"
@@ -142,7 +209,7 @@ class _MainPageState extends State<MainPage> {
                         label: "",
                         icon: Container(
                           height: 26,
-                          margin: EdgeInsets.only(bottom: 5),
+                          margin: EdgeInsets.only(bottom: 5, left: 10),
                           child: Image.asset(
                             (bottomNavBarIndex == 3)
                                 ? "assets/ic-prof-act.png"
