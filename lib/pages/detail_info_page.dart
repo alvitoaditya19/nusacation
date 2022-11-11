@@ -161,7 +161,7 @@ class DetailInfoPage extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                     SizedBox(
+                  SizedBox(
                     height: 12,
                   ),
                   Text(
@@ -170,7 +170,7 @@ class DetailInfoPage extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                         SizedBox(
+                  SizedBox(
                     height: 12,
                   ),
                   Text(

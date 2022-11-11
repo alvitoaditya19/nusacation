@@ -25,6 +25,8 @@ import 'package:nusacation/widgets/facility_item.dart';
 import 'package:nusacation/widgets/favorit_destination_card.dart';
 import 'package:nusacation/widgets/information_card.dart';
 import 'package:nusacation/widgets/loading_shimmer.dart';
+import 'package:nusacation/widgets/popular_spot.dart';
+
 
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
