@@ -42,9 +42,15 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnProfilePage());
     } else if (event is GoToFavoritPage) {
       emit(OnFavoritPage());
-    }  else if (event is GoToInfoPage) {
+    } else if (event is GoToHotelsPage) {
+      emit(OnHotelsPage());
+    } else if (event is GoToInfoPage) {
       emit(OnInfoPage());
-    }else if (event is GoToEditProfilePage) {
+    } else if (event is GoToSearchPage) {
+      emit(OnSearchPage());
+    } else if (event is GoToDetailInfoPage) {
+      emit(OnDetailInfoPage());
+    } else if (event is GoToEditProfilePage) {
       emit(OnEditProfilePage(event.user));
     }
   }

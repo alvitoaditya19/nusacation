@@ -12,6 +12,8 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  bool _enabled = true;
+
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final fb = FirebaseDatabase.instance;
   List<DestinationModel> destination = [];
@@ -157,7 +159,7 @@ class _MenuPageState extends State<MenuPage> {
                 );
               } else {
                 return SpinKitFadingCircle(
-                  color: kGreenColor,
+                  color: kBlueColor,
                   size: 50,
                 );
               }
@@ -169,7 +171,9 @@ class _MenuPageState extends State<MenuPage> {
 
     Widget searchDestination() {
       return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          context.read<PageBloc>().add(GoToSearchPage());
+        },
         child: Container(
           height: 50,
           padding: EdgeInsets.symmetric(
@@ -318,7 +322,9 @@ class _MenuPageState extends State<MenuPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<PageBloc>().add(GoToHotelsPage());
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 70,
@@ -409,7 +415,7 @@ class _MenuPageState extends State<MenuPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                   context.read<PageBloc>().add(GoToInfoPage());
+                    context.read<PageBloc>().add(GoToInfoPage());
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -479,18 +485,32 @@ class _MenuPageState extends State<MenuPage> {
     Widget vacationSpot() {
       return Container(
         margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
-        child: Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: listDestination.length,
-              itemBuilder: (BuildContext context, int index) {
-                return DestinationCard(listDestination[index]);
-              },
-            ),
+        constraints: BoxConstraints(
+            minHeight: 100,
+            minWidth: double.infinity,
+            maxHeight: MediaQuery.of(context).size.height),
+        child: BlocBuilder<DestinationBloc, DestinationState>(
+          builder: (_, destinationState) {
+            if (destinationState is DestinationLoaded) {
+              List<DestinationModel>? destination =
+                  destinationState.destinations;
 
-            // DestinationCard()
-          ],
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: destination!.length,
+                itemBuilder: (_, index) => DestinationCard(
+                  destination[index],
+                  onTap: () {
+                    context
+                        .read<PageBloc>()
+                        .add(GoToDetailDestinationPage(destination[index]));
+                  },
+                ),
+              );
+            } else {
+              return LoadingShimmer(_enabled);
+            }
+          },
         ),
       );
     }
@@ -509,6 +529,9 @@ class _MenuPageState extends State<MenuPage> {
               searchDestination(),
               recommended(),
               vacationSpotTitle(),
+                SizedBox(
+                height: 14,
+              ),
               vacationSpot(),
               SizedBox(
                 height: 80,

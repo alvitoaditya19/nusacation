@@ -31,6 +31,9 @@ class InfoPage extends StatelessWidget {
                         SizedBox()
                       ],
                     ),
+                      SizedBox(
+                      height: 20,
+                    ),
                     InformationCard(),
                     // DestinationCard()
                   ]),

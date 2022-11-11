@@ -24,7 +24,6 @@ class _WrapperState extends State<Wrapper> {
       }
     }
 
-
     return BlocBuilder<PageBloc, PageState>(
         builder: (_, pageState) => (pageState is OnSplashPage)
             ? SplashPage()
@@ -43,10 +42,19 @@ class _WrapperState extends State<Wrapper> {
                                     ? ProfilePage()
                                     : (pageState is OnFavoritPage)
                                         ? FavoritPage()
-                                         : (pageState is OnInfoPage)
-                                        ? InfoPage()
-                                        : (pageState is OnEditProfilePage)
-                                            ? EditProfilePage(pageState.user)
-                                            : MainPage());
+                                        : (pageState is OnHotelsPage)
+                                            ? HotelsPage()
+                                            : (pageState is OnInfoPage)
+                                                ? InfoPage()
+                                                    : (pageState is OnSearchPage)
+                                            ? SearchPage()
+                                                : (pageState
+                                                        is OnDetailInfoPage)
+                                                    ? DetailInfoPage()
+                                                    : (pageState
+                                                            is OnEditProfilePage)
+                                                        ? EditProfilePage(
+                                                            pageState.user)
+                                                        : MainPage());
   }
 }

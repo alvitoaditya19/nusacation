@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (_) => PageBloc()),
             BlocProvider(create: (_) => FavoritBloc()),
+            BlocProvider(create: (_) => DestinationBloc()..add(FetchDestinations())),
+
 
             BlocProvider(create: (_) => UserBloc()),
             BlocProvider(create: (_) => ThemeBloc()),

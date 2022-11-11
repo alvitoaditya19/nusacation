@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nusacation/bloc/blocs.dart';
 import 'package:nusacation/shared/shared.dart';
 
 class InformationCard extends StatelessWidget {
-
   const InformationCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-       
+        context.read<PageBloc>().add(GoToDetailInfoPage());
+
       },
       child: Stack(
         children: [
@@ -35,45 +37,72 @@ class InformationCard extends StatelessWidget {
                   height: 8,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/ic-fire.png",
+                          height: 24,
+                          width: 24,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Text(
                             'Flores, NTT',
-                            style: greyTextStyle.copyWith(
-                              fontWeight: light,
-                              fontSize: 14,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            'Pulau Komodo Berkunjung',
-                            style: blackTextStyle.copyWith(
-                              fontWeight: medium,
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            'IDR 421.833',
-                            style: blueTextStyle.copyWith(
+                            style: grey3TextStyle.copyWith(
                               fontWeight: medium,
                               fontSize: 14,
                             ),
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(
+                        '9-10-2022',
+                        style: grey3TextStyle.copyWith(
+                          fontWeight: medium,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
-                 
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  '10 Tempat Destinasi Wisata terbaik di daera FLores, NTT',
+                  style: blackTextStyle.copyWith(
+                    fontWeight: semiBold,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      "assets/img-people.png",
+                      height: 40,
+                      width: 40,
+                    ),
+                    SizedBox(width: 12,),
+                    Text(
+                      'Theresa Mazzie',
+                      style: blackTextStyle.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -96,10 +125,9 @@ class InformationCard extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
-             
                   ]),
                 ),
-             ],
+              ],
             ),
           ),
         ],

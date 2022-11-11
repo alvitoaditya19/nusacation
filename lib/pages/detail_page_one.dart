@@ -28,7 +28,7 @@ class DetailDestinationPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(destination!.imageUrl!),
+                    image: NetworkImage(destination!.imageUrl!),
                   ),
                 ),
               ),

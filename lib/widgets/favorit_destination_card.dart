@@ -33,7 +33,7 @@ class FavoritDestinationCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(destination!.imageUrl!))),
+                          image: NetworkImage(destination!.imageUrl!))),
                 ),
                 SizedBox(
                   height: 8,

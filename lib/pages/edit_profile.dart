@@ -29,14 +29,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return WillPopScope(
-        onWillPop: () async{
-          context.read<PageBloc>().add(GoToSplashPage());
+      onWillPop: () async {
+        context.read<PageBloc>().add(GoToMainPage());
 
-          return true;
-        },
+        return true;
+      },
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -170,13 +168,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         width: 250,
                         height: 45,
                         child: ElevatedButton(
-                             style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),// 
-                                     disabledBackgroundColor: Color(0xFFE4E4E4),
-                            backgroundColor: Colors.red[400],
-  ),
-                      
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)), //
+                              disabledBackgroundColor: Color(0xFFE4E4E4),
+                              backgroundColor: Colors.red[400],
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -206,7 +203,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 ),
                               ],
                             ),
-                       
                             onPressed: (isUpdating)
                                 ? null
                                 : () async {
@@ -221,7 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           "The link to change your password has been sent to your email.",
                                     )..show(context);
                                   }),
-                          ),
+                      ),
                       SizedBox(
                         height: 16,
                       ),
@@ -237,14 +233,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               width: 250,
                               height: 45,
                               child: ElevatedButton(
-                                 style: ElevatedButton.styleFrom(
-      elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
-  disabledBackgroundColor: Color(0xFFE4E4E4),
-                                  backgroundColor: Color(0xFF3E9D9D),
-  ),
-                            
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)),
+                                    disabledBackgroundColor: Color(0xFFE4E4E4),
+                                    backgroundColor: Color(0xFF3E9D9D),
+                                  ),
                                   child: Text(
                                     "Update My Profile",
                                     style: whiteTextFont.copyWith(
@@ -253,7 +248,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                             ? Colors.white
                                             : Color(0xFFBEBEBE)),
                                   ),
-                                
                                   onPressed: (isDataEdited)
                                       ? () async {
                                           setState(() {
@@ -278,13 +272,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             ),
                       SizedBox(height: 10),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-  shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            backgroundColor: Colors.black,
                           ),
-                          backgroundColor: Colors.black,
-                        ),
-                        
                           onPressed: () async {
                             final Future<ConfirmAction?> action =
                                 await _asyncConfirmDialog(context);
@@ -305,7 +298,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               margin: EdgeInsets.only(top: 20, left: defaultMargin),
               child: GestureDetector(
                 onTap: () {
-                  context.read<PageBloc>().add(GoToMenuPage());
+                  context.read<PageBloc>().add(GoToMainPage());
                 },
                 child: Icon(
                   Icons.arrow_back,
@@ -329,16 +322,17 @@ Future<Future<ConfirmAction?>> _asyncConfirmDialog(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         elevation: 0,
+        actionsPadding: EdgeInsets.only(bottom: 24, right: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
         title: Text(
           'Log Out',
-          style: blackTextFont.copyWith(fontSize: 25),
+          style: blackTextStyle.copyWith(fontSize: 25),
         ),
         content: Text(
           'Kamu yakin ingin keluar?',
-          style: blackTextFont.copyWith(fontSize: 20),
+          style: blackTextStyle.copyWith(fontSize: 20),
         ),
         actions: <Widget>[
           GestureDetector(

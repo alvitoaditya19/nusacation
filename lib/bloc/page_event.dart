@@ -85,7 +85,19 @@ class GoToMainPage extends PageEvent {
   @override
   List<Object> get props => [bottomNavBarIndex];
 }
+class GoToHotelsPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
 class GoToInfoPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+class GoToDetailInfoPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+class GoToSearchPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
