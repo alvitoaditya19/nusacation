@@ -7,16 +7,17 @@ import 'package:nusacation/shared/shared.dart';
 
 class DestinationCard extends StatelessWidget {
   final DestinationModel? destination;
-  final Function? onTap;
+  final Function()? onTap;
 
   const DestinationCard(this.destination, {super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.read<PageBloc>().add(GoToDetailDestinationPage(destination!));
-      },
+      onTap: onTap,
+
+        // context.read<PageBloc>().add(GoToDetailDestinationPage(destination!));
+
       child: Container(
                     margin: EdgeInsets.only(bottom: 16),
         child: Stack(

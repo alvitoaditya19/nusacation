@@ -1,41 +1,35 @@
 import 'package:equatable/equatable.dart';
 
-class DestinationModel extends Equatable {
+class PaketModel extends Equatable {
   final String? id;
   final String? name;
   final String? imageUrl;
-  final String? deskripsi;
-   List? listDeskripsi;
-
+  final List? deskripsi;
 
   final String? city;
   final String? location;
   final double? rating;
   final int? price;
 
-  DestinationModel({
+  PaketModel({
     required this.id,
     required this.name,
     required this.imageUrl,
     required this.city,
     required this.location,
-     this.listDeskripsi,
-
-    this.deskripsi = "",
+    required this.deskripsi,
     this.rating = 0.0,
     this.price = 0,
   });
 
-  factory DestinationModel.fromJson(Map<String, dynamic> json) {
-    return DestinationModel(
+  factory PaketModel.fromJson(Map<String, dynamic> json) {
+    return PaketModel(
       id: json['id'] ?? 0,
       name: json['name'] ?? "",
       imageUrl: json['imageUrl'],
       city: json['city'],
       location: json['location'],
       deskripsi: json['deskripsi'],
-      listDeskripsi: json['listDeskripsi'],
-
       rating: json['rating'].toDouble(),
       price: json["price"],
     );
@@ -50,14 +44,11 @@ class DestinationModel extends Equatable {
       'location': location,
       'rating': rating,
       'price': price,
-      'deskripsi': deskripsi,
-      'listDeskripsi': listDeskripsi,
-
-      
+      'deskripsi': deskripsi
     };
   }
 
   @override
   List<Object?> get props =>
-      [id, name, imageUrl, city, location, deskripsi,listDeskripsi, rating, price];
+      [id, name, imageUrl, city, location, deskripsi, rating, price];
 }

@@ -17,6 +17,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nusacation/bloc/blocs.dart';
 import 'package:nusacation/models/destination_model.dart';
+import 'package:nusacation/models/paket_model.dart';
 import 'package:nusacation/pages/list_destination.dart';
 import 'package:nusacation/services/services.dart';
 import 'package:nusacation/shared/shared.dart';
@@ -57,6 +58,10 @@ part 'main_page.dart';
 part 'hotels_page.dart';
 
 part 'detail_page_one.dart';
+part 'detail_page_two.dart';
+part 'detail_page_three.dart';
+
+
 part 'detail_info_page.dart';
 
 

@@ -13,6 +13,7 @@ class GoToGetStartedPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
 class GoToLanding extends PageEvent {
   @override
   List<Object> get props => [];
@@ -32,8 +33,6 @@ class GoToSignUpPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
-
-
 
 class GoToRegistrationPage extends PageEvent {
   final RegistrationData registrationData;
@@ -85,29 +84,52 @@ class GoToMainPage extends PageEvent {
   @override
   List<Object> get props => [bottomNavBarIndex];
 }
+
 class GoToHotelsPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
 class GoToInfoPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
 class GoToDetailInfoPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
 class GoToSearchPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
+
 class GoToDetailDestinationPage extends PageEvent {
   final DestinationModel destination;
-  
+
   GoToDetailDestinationPage(this.destination);
 
   @override
   List<Object> get props => [destination];
+}
+
+class GoToDetailHotelPage extends PageEvent {
+  final DestinationModel hotel;
+
+  GoToDetailHotelPage(this.hotel);
+
+  @override
+  List<Object> get props => [hotel];
+}
+
+class GoToDetailPaketPage extends PageEvent {
+  final DestinationModel paket;
+
+  GoToDetailPaketPage(this.paket);
+
+  @override
+  List<Object> get props => [paket];
 }
 
 class GoToEditProfilePage extends PageEvent {

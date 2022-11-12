@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nusacation/models/destination_model.dart';
 import 'package:nusacation/models/models.dart';
+import 'package:nusacation/models/paket_model.dart';
 
 part 'page_event.dart';
 part 'page_state.dart';
@@ -38,6 +39,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnMainPage(bottomNavBarIndex: event.bottomNavBarIndex));
     } else if (event is GoToDetailDestinationPage) {
       emit(OnDetailDestinationPage(event.destination));
+    } else if (event is GoToDetailHotelPage) {
+      emit(OnDetailHotelPage(event.hotel));
     } else if (event is GoToProfilePage) {
       emit(OnProfilePage());
     } else if (event is GoToFavoritPage) {
@@ -50,6 +53,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnSearchPage());
     } else if (event is GoToDetailInfoPage) {
       emit(OnDetailInfoPage());
+    } else if (event is GoToDetailPaketPage) {
+      emit(OnDetailPaketPage(event.paket));
     } else if (event is GoToEditProfilePage) {
       emit(OnEditProfilePage(event.user));
     }

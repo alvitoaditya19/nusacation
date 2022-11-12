@@ -10,22 +10,22 @@ part 'destination_event.dart';
 part 'destination_state.dart';
 
 class DestinationBloc extends Bloc<DestinationEvent, DestinationState> {
-    DestinationBloc() : super(DestinationInitial()){
+  DestinationBloc() : super(DestinationInitial()) {
     on<DestinationEvent>(mapEventToState);
   }
-    
+
   @override
-void mapEventToState(DestinationEvent event, Emitter<DestinationState> emit) async {
+  void mapEventToState(
+      DestinationEvent event, Emitter<DestinationState> emit) async {
     if (event is FetchDestinations) {
       try {
-        List<DestinationModel> destination = await DestinationServices().getDestination();
-          emit (DestinationLoaded(
-            destinations: destination.toList()
-          ));
+        List<DestinationModel> destination =
+            await DestinationServices().getDestination();
+        emit(DestinationLoaded(destinations: destination.toList()));
         print(destination);
       } catch (e) {
         print(e);
       }
-    }
+    } 
   }
 }

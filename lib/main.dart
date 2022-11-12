@@ -13,8 +13,8 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-class MyApp extends StatelessWidget {
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider.value(
@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (_) => PageBloc()),
             BlocProvider(create: (_) => FavoritBloc()),
-            BlocProvider(create: (_) => DestinationBloc()..add(FetchDestinations())),
-
-
+            BlocProvider(
+                create: (_) => DestinationBloc()..add(FetchDestinations(),)),
+                        BlocProvider(
+                create: (_) => HotelBloc()..add(FetchHotels(),)),
             BlocProvider(create: (_) => UserBloc()),
             BlocProvider(create: (_) => ThemeBloc()),
-
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (_, themeState) => MaterialApp(

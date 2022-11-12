@@ -39,7 +39,6 @@ class OnStartMenu extends PageState {
   List<Object> get props => [];
 }
 
-
 class OnRegistrationPage extends PageState {
   final RegistrationData registrationData;
 
@@ -81,29 +80,52 @@ class OnFavoritPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
 class OnHotelsPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
 class OnInfoPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
 class OnDetailInfoPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
 class OnSearchPage extends PageState {
   @override
   List<Object> get props => [];
 }
+
 class OnDetailDestinationPage extends PageState {
   final DestinationModel destination;
 
   OnDetailDestinationPage(this.destination);
-  
+
   @override
   List<Object> get props => [destination];
+}
+
+class OnDetailHotelPage extends PageState {
+  final DestinationModel hotel;
+
+  OnDetailHotelPage(this.hotel);
+
+  @override
+  List<Object> get props => [hotel];
+}
+
+class OnDetailPaketPage extends PageState {
+  final DestinationModel paket;
+
+  OnDetailPaketPage(this.paket);
+
+  @override
+  List<Object> get props => [paket];
 }
 
 class OnMainPage extends PageState {
@@ -123,5 +145,3 @@ class OnEditProfilePage extends PageState {
   @override
   List<Object> get props => [user];
 }
-
-

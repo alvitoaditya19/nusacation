@@ -5,25 +5,39 @@ class HotelsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        Widget vacationSpot() {
-      return  Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: listDestination.length,
-              itemBuilder: (BuildContext contextt, int index) {
-                return DestinationCard(
-                    listDestination[index],
-             );
-          
-              },
-            ),
+    bool _enabled = true;
 
-            // DestinationCard()
-          ],
-    
+    Widget vacationSpot() {
+      return Container(
+        constraints: BoxConstraints(
+            minHeight: 100,
+            minWidth: double.infinity,
+            maxHeight: MediaQuery.of(context).size.height),
+        child: BlocBuilder<HotelBloc, HotelState>(
+          builder: (_, hotelState) {
+            if (hotelState is HotelLoaded) {
+              List<DestinationModel>? hotel = hotelState.hotels;
+
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: hotel!.length,
+                itemBuilder: (_, index) => DestinationCard(
+                  hotel[index],
+                  onTap: () {
+                    context
+                        .read<PageBloc>()
+                        .add(GoToDetailHotelPage(hotel[index]));
+                  },
+                ),
+              );
+            } else {
+              return LoadingShimmer(_enabled);
+            }
+          },
+        ),
       );
     }
+
     return Scaffold(
         backgroundColor: kBackgroundColor,
         body: SafeArea(
@@ -46,14 +60,13 @@ class HotelsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                      SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
-vacationSpot(),
+                    vacationSpot(),
                     // DestinationCard()
                   ]),
                 ),
-                
               ),
               SafeArea(
                 child: Container(

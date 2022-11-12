@@ -9,3 +9,4 @@ class FetchDestinations extends DestinationEvent {
   List<Object> get props => [];
 }
 
+

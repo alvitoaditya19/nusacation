@@ -232,37 +232,44 @@ class _MenuPageState extends State<MenuPage> {
                       });
                     },
                   ),
-                  items: imgList
-                      .map((item) => Stack(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(item),
+                  items: paket
+                      .map((item) => GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<PageBloc>()
+                                  .add(GoToDetailPaketPage(item));
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(item.imageUrl!),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      height: 120,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                            Colors.black.withOpacity(0),
+                                            Colors.black.withOpacity(0.60),
+                                          ])),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ))
                       .toList(),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 120,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                            Colors.black.withOpacity(0),
-                            Colors.black.withOpacity(0.60),
-                          ])),
-                    ),
-                  ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,6 +279,28 @@ class _MenuPageState extends State<MenuPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        // GestureDetector(
+                        //   onTap: () {},
+                        //   child: Container(
+                        //     padding: EdgeInsets.symmetric(
+                        //         horizontal: 24, vertical: 6),
+                        //     margin: EdgeInsets.only(left: 12, bottom: 24),
+                        //     decoration: BoxDecoration(
+                        //       color: kBlueColor,
+                        //       borderRadius: BorderRadius.circular(50),
+                        //     ),
+                        //     child: Column(children: [
+                        //       Text(
+                        //         'Pesan',
+                        //         style: whiteTextStyle.copyWith(
+                        //           fontWeight: medium,
+                        //           fontSize: 14,
+                        //         ),
+                        //       ),
+                        //     ]),
+                        //   ),
+                        // ),
+                        // Spacer(),
                         Container(
                           margin: EdgeInsets.only(right: 12, bottom: 24),
                           child: Row(
@@ -529,7 +558,7 @@ class _MenuPageState extends State<MenuPage> {
               searchDestination(),
               recommended(),
               vacationSpotTitle(),
-                SizedBox(
+              SizedBox(
                 height: 14,
               ),
               vacationSpot(),

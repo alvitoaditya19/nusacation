@@ -18,6 +18,7 @@ class DestinationLoaded extends DestinationState {
   List<Object?> get props => [destinations];
 }
 
+
 class DestinationFailed extends DestinationState {
   final String error;
 

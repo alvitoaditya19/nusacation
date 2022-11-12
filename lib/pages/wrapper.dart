@@ -19,6 +19,8 @@ class _WrapperState extends State<Wrapper> {
       if (!(prevPageEvent is GoToMainPage)) {
         context.read<UserBloc>().add(LoadUser(firebaseUser.uid));
 
+        context.read<DestinationBloc>().add(FetchDestinations());
+
         prevPageEvent = GoToMainPage();
         context.read<PageBloc>().add(prevPageEvent!);
       }
@@ -44,17 +46,25 @@ class _WrapperState extends State<Wrapper> {
                                         ? FavoritPage()
                                         : (pageState is OnHotelsPage)
                                             ? HotelsPage()
-                                            : (pageState is OnInfoPage)
-                                                ? InfoPage()
-                                                    : (pageState is OnSearchPage)
-                                            ? SearchPage()
-                                                : (pageState
-                                                        is OnDetailInfoPage)
-                                                    ? DetailInfoPage()
+                                            : (pageState is OnDetailHotelPage)
+                                                ? DetailHotelPage(
+                                                    pageState.hotel)
+                                                             : (pageState is OnDetailPaketPage)
+                                                ? DetailPaketPage(
+                                                    pageState.paket)
+                                                : (pageState is OnInfoPage)
+                                                    ? InfoPage()
                                                     : (pageState
-                                                            is OnEditProfilePage)
-                                                        ? EditProfilePage(
-                                                            pageState.user)
-                                                        : MainPage());
+                                                            is OnSearchPage)
+                                                        ? SearchPage()
+                                                        : (pageState
+                                                                is OnDetailInfoPage)
+                                                            ? DetailInfoPage()
+                                                            : (pageState
+                                                                    is OnEditProfilePage)
+                                                                ? EditProfilePage(
+                                                                    pageState
+                                                                        .user)
+                                                                : MainPage());
   }
 }
