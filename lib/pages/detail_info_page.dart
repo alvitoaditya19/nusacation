@@ -1,7 +1,9 @@
 part of 'pages.dart';
 
 class DetailInfoPage extends StatelessWidget {
-  const DetailInfoPage({super.key});
+  final InfoModel? info;
+
+  DetailInfoPage(this.info);
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,7 @@ class DetailInfoPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    '10 Tempat Destinasi Wisata terbaik di daera FLores, NTT',
+                    info!.title!,
                     style: blackTextStyle.copyWith(
                       fontWeight: semiBold,
                       fontSize: 18,
@@ -110,16 +112,20 @@ class DetailInfoPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Image.asset(
-                            "assets/img-people.png",
+                          Container(
                             height: 40,
                             width: 40,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(info!.creatorImage!))),
                           ),
                           SizedBox(
-                            width: 12,
+                            width: 10,
                           ),
                           Text(
-                            'Theresa Mazzie',
+                            info!.creatorName!,
                             style: blackTextStyle.copyWith(
                               fontSize: 14,
                             ),
@@ -129,7 +135,7 @@ class DetailInfoPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 4),
                         child: Text(
-                          '9-10-2022',
+                          info!.time!,
                           style: grey3TextStyle.copyWith(
                             fontWeight: medium,
                             fontSize: 14,
@@ -148,7 +154,7 @@ class DetailInfoPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/img-info1.png"),
+                        image: NetworkImage(info!.imageUrl!),
                       ),
                     ),
                   ),
@@ -156,29 +162,12 @@ class DetailInfoPage extends StatelessWidget {
                     height: 18,
                   ),
                   Text(
-                    'Nusa Tenggara Timur adalah sebuah provinsi di Indonesia yang meliputi bagian timur Kepulauan Nusa Tenggara. Provinsi ini memiliki ibu kota di Kota Kupang dan memiliki 22 kabupaten/kota.',
+                    info!.deskripsi!,
                     style: grey3TextStyle.copyWith(
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    'Nusa Tenggara Timur sempat dinobatkan sebagai destinasi terbaik di dunia versi Lonely Planet. Berdasarkan kategori bernama Best Value, melihat Nusa Tenggara Timur merupakan destinasi yang akan sustainable.',
-                    style: grey3TextStyle.copyWith(
-                      fontSize: 14,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    'Saat memasuki kawasan Taman Nasional Komodo, kamu bisa menemukan pantai yang sangat unik. Biasanya, hamparan pasir pantai berwarna putih atau hitam. Anehnya, pantai ini punya hamparan pasir yang berwarna merah muda. Warnanya mencolok banget, apalagi saat terkena sinar matahari.',
-                    style: grey3TextStyle.copyWith(
-                      fontSize: 14,
-                    ),
-                  ),
+
                 ],
               ),
             ),

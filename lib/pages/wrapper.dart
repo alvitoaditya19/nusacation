@@ -46,25 +46,31 @@ class _WrapperState extends State<Wrapper> {
                                         ? FavoritPage()
                                         : (pageState is OnHotelsPage)
                                             ? HotelsPage()
-                                            : (pageState is OnDetailHotelPage)
-                                                ? DetailHotelPage(
-                                                    pageState.hotel)
-                                                             : (pageState is OnDetailPaketPage)
-                                                ? DetailPaketPage(
-                                                    pageState.paket)
-                                                : (pageState is OnInfoPage)
-                                                    ? InfoPage()
+                                            : (pageState
+                                                    is OnTransportationPage)
+                                                ? TransportaionPage()
+                                                : (pageState is OnGuideTourPage)
+                                                    ? GuideTourPage()
                                                     : (pageState
-                                                            is OnSearchPage)
-                                                        ? SearchPage()
+                                                            is OnDetailHotelPage)
+                                                        ? DetailHotelPage(
+                                                            pageState.hotel)
                                                         : (pageState
-                                                                is OnDetailInfoPage)
-                                                            ? DetailInfoPage()
+                                                                is OnDetailPaketPage)
+                                                            ? DetailPaketPage(
+                                                                pageState.paket)
                                                             : (pageState
-                                                                    is OnEditProfilePage)
-                                                                ? EditProfilePage(
-                                                                    pageState
-                                                                        .user)
-                                                                : MainPage());
+                                                                    is OnInfoPage)
+                                                                ? InfoPage()
+                                                                : (pageState
+                                                                        is OnSearchPage)
+                                                                    ? SearchPage()
+                                                                    : (pageState
+                                                                            is OnDetailInfoPage)
+                                                                        ? DetailInfoPage(pageState.info)
+                                                                        : (pageState
+                                                                                is OnEditProfilePage)
+                                                                            ? EditProfilePage(pageState.user)
+                                                                            : MainPage());
   }
 }

@@ -16,7 +16,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nusacation/bloc/blocs.dart';
+import 'package:nusacation/bloc/guideTour_bloc.dart';
 import 'package:nusacation/models/destination_model.dart';
+import 'package:nusacation/models/guide_tour_model.dart';
+import 'package:nusacation/models/info_model.dart';
+import 'package:nusacation/models/nusacation_transaction.dart';
 import 'package:nusacation/models/paket_model.dart';
 import 'package:nusacation/pages/list_destination.dart';
 import 'package:nusacation/services/services.dart';
@@ -24,9 +28,13 @@ import 'package:nusacation/shared/shared.dart';
 import 'package:nusacation/widgets/destination_card.dart';
 import 'package:nusacation/widgets/facility_item.dart';
 import 'package:nusacation/widgets/favorit_destination_card.dart';
+import 'package:nusacation/widgets/guide_tour.dart';
 import 'package:nusacation/widgets/information_card.dart';
 import 'package:nusacation/widgets/loading_shimmer.dart';
+import 'package:nusacation/widgets/money_card.dart';
 import 'package:nusacation/widgets/popular_spot.dart';
+import 'package:nusacation/extensions/extensions.dart';
+
 
 
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -51,11 +59,19 @@ part 'account_confirmation_page.dart';
 part 'sign_in_page.dart';
 part 'sign_up_page.dart';
 part 'search_page.dart';
+part 'topup_page.dart';
+
+// part 'success_topup_page.dart';
+
 
 
 part 'menu_page.dart';
 part 'main_page.dart';
 part 'hotels_page.dart';
+part 'transportation_page.dart';
+part 'guide_tour_page.dart';
+
+
 
 part 'detail_page_one.dart';
 part 'detail_page_two.dart';

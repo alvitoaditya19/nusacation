@@ -91,13 +91,29 @@ class GoToHotelsPage extends PageEvent {
 }
 
 class GoToInfoPage extends PageEvent {
+
+
+
+  GoToInfoPage();
+  @override
+  List<Object> get props => [];
+}
+class GoToTranportationPage extends PageEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToGuideTourPage extends PageEvent {
   @override
   List<Object> get props => [];
 }
 
 class GoToDetailInfoPage extends PageEvent {
+    final InfoModel info;
+
+  GoToDetailInfoPage(this.info);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [info];
 }
 
 class GoToSearchPage extends PageEvent {

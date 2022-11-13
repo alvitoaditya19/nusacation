@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nusacation/bloc/blocs.dart';
+import 'package:nusacation/models/info_model.dart';
 import 'package:nusacation/shared/shared.dart';
 
 class InformationCard extends StatelessWidget {
-  const InformationCard({super.key});
+  final InfoModel? info;
+  final Function()? onTap;
+
+  const InformationCard(this.info, {super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<PageBloc>().add(GoToDetailInfoPage());
-
+        context.read<PageBloc>().add(GoToDetailInfoPage(info!));
       },
       child: Stack(
         children: [
@@ -31,7 +34,7 @@ class InformationCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/img-info1.png"))),
+                          image: NetworkImage(info!.imageUrl!))),
                 ),
                 SizedBox(
                   height: 8,
@@ -65,7 +68,7 @@ class InformationCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
-                        '9-10-2022',
+                        info!.time!,
                         style: grey3TextStyle.copyWith(
                           fontWeight: medium,
                           fontSize: 14,
@@ -78,7 +81,7 @@ class InformationCard extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  '10 Tempat Destinasi Wisata terbaik di daera FLores, NTT',
+                  info!.title!,
                   style: blackTextStyle.copyWith(
                     fontWeight: semiBold,
                     fontSize: 18,
@@ -89,14 +92,20 @@ class InformationCard extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Image.asset(
-                      "assets/img-people.png",
+                    Container(
                       height: 40,
                       width: 40,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(info!.creatorImage!))),
                     ),
-                    SizedBox(width: 12,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
-                      'Theresa Mazzie',
+                      info!.creatorName!,
                       style: blackTextStyle.copyWith(
                         fontSize: 14,
                       ),

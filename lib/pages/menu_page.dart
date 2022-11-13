@@ -129,7 +129,12 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TopUpPage()),
+                        );
+                      },
                       child: Container(
                         height: 54,
                         width: 54,
@@ -211,100 +216,131 @@ class _MenuPageState extends State<MenuPage> {
         height: 200,
         margin: EdgeInsets.only(top: 14, bottom: 14),
         child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            // height: 198,
-            // margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 0),
-            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            child: Stack(
-              children: [
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 200,
-                    viewportFraction: 1,
-                    autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    pauseAutoPlayOnTouch: true,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                  ),
-                  items: paket
-                      .map((item) => GestureDetector(
-                            onTap: () {
-                              context
-                                  .read<PageBloc>()
-                                  .add(GoToDetailPaketPage(item));
-                            },
-                            child: Stack(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(item.imageUrl!),
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+          borderRadius: BorderRadius.circular(16.0),
+          // height: 198,
+          // margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 0),
+          // decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+          child: BlocBuilder<PaketBloc, PaketState>(
+            builder: (_, destinationState) {
+              if (destinationState is PaketLoaded) {
+                List<DestinationModel>? pakets = destinationState.paket;
+
+                return Stack(
+                  children: [
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        height: 200,
+                        viewportFraction: 1,
+                        autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        pauseAutoPlayOnTouch: true,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                      ),
+                      items: pakets!
+                          .map((item) => GestureDetector(
+                                onTap: () {
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToDetailPaketPage(item));
+                                },
+                                child: Stack(
                                   children: [
                                     Container(
-                                      height: 120,
-                                      width: double.infinity,
                                       decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                            Colors.black.withOpacity(0),
-                                            Colors.black.withOpacity(0.60),
-                                          ])),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(item.imageUrl!),
+                                        ),
+                                      ),
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          height: 120,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter,
+                                                  colors: [
+                                                Colors.black.withOpacity(0),
+                                                Colors.black.withOpacity(0.60),
+                                              ])),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ))
-                      .toList(),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Spacer(),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                              ))
+                          .toList(),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // GestureDetector(
-                        //   onTap: () {},
-                        //   child: Container(
-                        //     padding: EdgeInsets.symmetric(
-                        //         horizontal: 24, vertical: 6),
-                        //     margin: EdgeInsets.only(left: 12, bottom: 24),
-                        //     decoration: BoxDecoration(
-                        //       color: kBlueColor,
-                        //       borderRadius: BorderRadius.circular(50),
-                        //     ),
-                        //     child: Column(children: [
-                        //       Text(
-                        //         'Pesan',
-                        //         style: whiteTextStyle.copyWith(
-                        //           fontWeight: medium,
-                        //           fontSize: 14,
-                        //         ),
-                        //       ),
-                        //     ]),
-                        //   ),
-                        // ),
-                        // Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            // GestureDetector(
+                            //   onTap: () {},
+                            //   child: Container(
+                            //     padding: EdgeInsets.symmetric(
+                            //         horizontal: 24, vertical: 6),
+                            //     margin: EdgeInsets.only(left: 12, bottom: 24),
+                            //     decoration: BoxDecoration(
+                            //       color: kBlueColor,
+                            //       borderRadius: BorderRadius.circular(50),
+                            //     ),
+                            //     child: Column(children: [
+                            //       Text(
+                            //         'Pesan',
+                            //         style: whiteTextStyle.copyWith(
+                            //           fontWeight: medium,
+                            //           fontSize: 14,
+                            //         ),
+                            //       ),
+                            //     ]),
+                            //   ),
+                            // ),
+                            //
+                            Container(
+                              margin: EdgeInsets.only(left: 12, top: 12),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: kYellowColor,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(children: [
+                                Text(
+                                  '50%',
+                                  style: redTextStyle.copyWith(
+                                    fontWeight: medium,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  'OFF',
+                                  style: whiteTextStyle.copyWith(
+                                    fontWeight: medium,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
                         Container(
                           margin: EdgeInsets.only(right: 12, bottom: 24),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: map<Widget>(imgList, (index, url) {
                               return Container(
                                 width: 12.0,
@@ -321,11 +357,15 @@ class _MenuPageState extends State<MenuPage> {
                           ),
                         ),
                       ],
-                    ),
+                    )
                   ],
-                )
-              ],
-            )),
+                );
+              } else {
+                return LoadingShimmerRecommended(_enabled);
+              }
+            },
+          ),
+        ),
       );
     }
 
@@ -383,7 +423,9 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<PageBloc>().add(GoToTranportationPage());
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 70,
@@ -413,7 +455,9 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<PageBloc>().add(GoToGuideTourPage());
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: 70,

@@ -5,6 +5,39 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _enabled = true;
+
+    Widget infoWidget() {
+      return Container(
+        constraints: BoxConstraints(
+            minHeight: 100,
+            minWidth: double.infinity,
+            maxHeight: MediaQuery.of(context).size.height),
+        child: BlocBuilder<InfoBloc, InfoState>(
+          builder: (_, infoState) {
+            if (infoState is InfoLoaded) {
+              List<InfoModel>? infos = infoState.info;
+
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: infos!.length,
+                itemBuilder: (_, index) => InformationCard(
+                  infos[index],
+                  onTap: () {
+                    context
+                        .read<PageBloc>()
+                        .add(GoToDetailInfoPage(infos[index]));
+                  },
+                ),
+              );
+            } else {
+              return LoadingShimmer(_enabled);
+            }
+          },
+        ),
+      );
+    }
+
     return Scaffold(
         backgroundColor: kBackgroundColor,
         body: SafeArea(
@@ -31,10 +64,10 @@ class InfoPage extends StatelessWidget {
                         SizedBox()
                       ],
                     ),
-                      SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
-                    InformationCard(),
+                    infoWidget()
                     // DestinationCard()
                   ]),
                 ),

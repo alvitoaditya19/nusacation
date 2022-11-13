@@ -85,6 +85,14 @@ class OnHotelsPage extends PageState {
   @override
   List<Object> get props => [];
 }
+class OnTransportationPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+class OnGuideTourPage extends PageState {
+  @override
+  List<Object> get props => [];
+}
 
 class OnInfoPage extends PageState {
   @override
@@ -92,8 +100,11 @@ class OnInfoPage extends PageState {
 }
 
 class OnDetailInfoPage extends PageState {
+    final InfoModel info;
+
+  OnDetailInfoPage(this.info);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [info];
 }
 
 class OnSearchPage extends PageState {

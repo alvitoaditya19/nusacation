@@ -37,7 +37,7 @@ class DetailPaketPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage(paket!.imageUrl!),
+                        image: NetworkImage(paket!.imageUrl!),
                       ),
                     ),
                   ),

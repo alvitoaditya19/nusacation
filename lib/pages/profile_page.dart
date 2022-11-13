@@ -13,11 +13,10 @@ class ProfilePage extends StatelessWidget {
         flexibleSpace: SafeArea(
           child: Container(
               padding: EdgeInsets.only(
-                left: defaultMargin,
-                right: defaultMargin,
-                top: defaultMargin,
-                bottom: 10
-              ),
+                  left: defaultMargin,
+                  right: defaultMargin,
+                  top: defaultMargin,
+                  bottom: 10),
               child: BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                 if (userState is UserLoaded) {
                   if (imageFileToUpload != null) {
@@ -51,52 +50,55 @@ class ProfilePage extends StatelessWidget {
                               fit: BoxFit.cover),
                         ),
                       ),
-                  
-                        Expanded(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Howdy, ${userState.user.name!}',
-                              style: blackTextStyle.copyWith(
-                                  fontWeight: medium, fontSize: 16),
-                              overflow: TextOverflow.clip,
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              NumberFormat.currency(
-                                      locale: "id_ID",
-                                      decimalDigits: 0,
-                                      symbol: "IDR ")
-                                  .format(userState.user.balance ?? "0"),
-                              style: grey3TextStyle.copyWith(fontSize: 14),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 2),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(40),
-                                  color: kGoldColor),
-                              child: Text(
-                                'Gold',
-                                style: whiteTextStyle.copyWith(
-                                    fontWeight: light, fontSize: 12),
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Howdy, ${userState.user.name!}',
+                                style: blackTextStyle.copyWith(
+                                    fontWeight: medium, fontSize: 16),
                                 overflow: TextOverflow.clip,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                NumberFormat.currency(
+                                        locale: "id_ID",
+                                        decimalDigits: 0,
+                                        symbol: "IDR ")
+                                    .format(userState.user.balance ?? "0"),
+                                style: grey3TextStyle.copyWith(fontSize: 14),
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 2),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: kGoldColor),
+                                child: Text(
+                                  'Gold',
+                                  style: whiteTextStyle.copyWith(
+                                      fontWeight: light, fontSize: 12),
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-               GestureDetector(
-                        onTap: () {},
+                      GestureDetector(
+                        onTap: () async {
+                            final Future<ConfirmAction?> action =
+                                await _asyncConfirmDialog(context);
+                            print("Confirm Action $action");
+                          },
                         child: Image.asset(
                           'assets/btn-exit.png',
                           width: 20,
@@ -134,7 +136,7 @@ class ProfilePage extends StatelessWidget {
       );
     }
 
-    Widget content() {
+    Widget content(data) {
       return Expanded(
         child: Container(
           width: double.infinity,
@@ -156,7 +158,7 @@ class ProfilePage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/edit-profile');
+                  context.read<PageBloc>().add(GoToEditProfilePage(data));
                 },
                 child: menuItem(
                   'Edit Profile',
@@ -196,10 +198,29 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: kBackgroundColor,
         body: SafeArea(
-          child: Column(children: [
-            header(),
-            content(),
-          ]),
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (_, userState) {
+              if (userState is UserLoaded) {
+                if (imageFileToUpload != null) {
+                  uploadImage(imageFileToUpload!).then((downloadURL) {
+                    imageFileToUpload = null;
+                    context
+                        .read<UserBloc>()
+                        .add(UpdateData(profileImage: downloadURL));
+                  });
+                }
+                return Column(children: [
+                  header(),
+                  content((userState as UserLoaded).user),
+                ]);
+              } else {
+                return SpinKitFadingCircle(
+                  color: kGreenColor,
+                  size: 50,
+                );
+              }
+            },
+          ),
         ));
   }
 }

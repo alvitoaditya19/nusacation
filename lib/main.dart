@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nusacation/bloc/blocs.dart';
+import 'package:nusacation/bloc/guideTour_bloc.dart';
+import 'package:nusacation/bloc/info_bloc.dart';
 import 'package:nusacation/pages/pages.dart';
 
 import 'package:nusacation/services/services.dart';
@@ -25,9 +27,35 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => PageBloc()),
             BlocProvider(create: (_) => FavoritBloc()),
             BlocProvider(
-                create: (_) => DestinationBloc()..add(FetchDestinations(),)),
-                        BlocProvider(
-                create: (_) => HotelBloc()..add(FetchHotels(),)),
+                create: (_) => DestinationBloc()
+                  ..add(
+                    FetchDestinations(),
+                  )),
+            BlocProvider(
+                create: (_) => HotelBloc()
+                  ..add(
+                    FetchHotels(),
+                  )),
+            BlocProvider(
+                create: (_) => TransportationBloc()
+                  ..add(
+                    FetchTransportation(),
+                  )),
+            BlocProvider(
+                create: (_) => InfoBloc()
+                  ..add(
+                    FetchInfo(),
+                  )),
+            BlocProvider(
+                create: (_) => GuideTourBloc()
+                  ..add(
+                    FetchGuideTour(),
+                  )),
+            BlocProvider(
+                create: (_) => PaketBloc()
+                  ..add(
+                    FetchPaket(),
+                  )),
             BlocProvider(create: (_) => UserBloc()),
             BlocProvider(create: (_) => ThemeBloc()),
           ],

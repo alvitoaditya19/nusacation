@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nusacation/models/destination_model.dart';
+import 'package:nusacation/models/info_model.dart';
 import 'package:nusacation/models/models.dart';
 import 'package:nusacation/models/paket_model.dart';
 
@@ -47,12 +48,16 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnFavoritPage());
     } else if (event is GoToHotelsPage) {
       emit(OnHotelsPage());
+    }  else if (event is GoToTranportationPage) {
+      emit(OnTransportationPage());
+    }  else if (event is GoToGuideTourPage) {
+      emit(OnGuideTourPage());
     } else if (event is GoToInfoPage) {
       emit(OnInfoPage());
     } else if (event is GoToSearchPage) {
       emit(OnSearchPage());
     } else if (event is GoToDetailInfoPage) {
-      emit(OnDetailInfoPage());
+      emit(OnDetailInfoPage(event.info));
     } else if (event is GoToDetailPaketPage) {
       emit(OnDetailPaketPage(event.paket));
     } else if (event is GoToEditProfilePage) {
