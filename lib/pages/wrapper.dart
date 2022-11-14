@@ -67,10 +67,15 @@ class _WrapperState extends State<Wrapper> {
                                                                     ? SearchPage()
                                                                     : (pageState
                                                                             is OnDetailInfoPage)
-                                                                        ? DetailInfoPage(pageState.info)
+                                                                        ? DetailInfoPage(pageState
+                                                                            .info)
                                                                         : (pageState
                                                                                 is OnEditProfilePage)
                                                                             ? EditProfilePage(pageState.user)
-                                                                            : MainPage());
+                                                                            : (pageState is OnBookingPage)
+                                                                                ? BookingPage(pageState.booking)
+                                                                                : (pageState is OnSuccessPage)
+                                                                                    ? SuccessPage(pageState.user)
+                                                                                    : MainPage());
   }
 }
