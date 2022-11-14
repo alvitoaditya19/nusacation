@@ -60,8 +60,12 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnDetailInfoPage(event.info));
     } else if (event is GoToDetailPaketPage) {
       emit(OnDetailPaketPage(event.paket));
-    } else if (event is GoToEditProfilePage) {
+    } else if (event is GoToBookingPage) {
+      emit(OnBookingPage(event.booking));
+    } else if (event is GoToSuccessPage) {
+      emit(OnSuccessPage(event.user));
+    }else if (event is GoToEditProfilePage) {
       emit(OnEditProfilePage(event.user));
-    }
+    } 
   }
 }

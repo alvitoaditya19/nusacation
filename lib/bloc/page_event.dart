@@ -103,6 +103,14 @@ class GoToTranportationPage extends PageEvent {
   List<Object> get props => [];
 }
 
+class GoToSuccessPage extends PageEvent {
+  final UserModel user;
+  
+  GoToSuccessPage(this.user);
+  @override
+  List<Object> get props => [];
+}
+
 class GoToGuideTourPage extends PageEvent {
   @override
   List<Object> get props => [];
@@ -146,6 +154,15 @@ class GoToDetailPaketPage extends PageEvent {
 
   @override
   List<Object> get props => [paket];
+}
+
+class GoToBookingPage extends PageEvent {
+  final DestinationModel booking;
+
+  GoToBookingPage(this.booking);
+
+  @override
+  List<Object> get props => [booking];
 }
 
 class GoToEditProfilePage extends PageEvent {

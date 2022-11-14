@@ -42,7 +42,7 @@ class OnStartMenu extends PageState {
 class OnRegistrationPage extends PageState {
   final RegistrationData registrationData;
 
-  OnRegistrationPage(this.registrationData);
+  const OnRegistrationPage(this.registrationData);
 
   @override
   List<Object> get props => [];
@@ -51,7 +51,7 @@ class OnRegistrationPage extends PageState {
 class OnPreferencePage extends PageState {
   final RegistrationData registrationData;
 
-  OnPreferencePage(this.registrationData);
+  const OnPreferencePage(this.registrationData);
 
   @override
   List<Object> get props => [];
@@ -60,7 +60,7 @@ class OnPreferencePage extends PageState {
 class OnAccountConfirmationPage extends PageState {
   final RegistrationData registrationData;
 
-  OnAccountConfirmationPage(this.registrationData);
+  const OnAccountConfirmationPage(this.registrationData);
 
   @override
   List<Object> get props => [];
@@ -102,7 +102,7 @@ class OnInfoPage extends PageState {
 class OnDetailInfoPage extends PageState {
     final InfoModel info;
 
-  OnDetailInfoPage(this.info);
+  const OnDetailInfoPage(this.info);
   @override
   List<Object> get props => [info];
 }
@@ -112,10 +112,19 @@ class OnSearchPage extends PageState {
   List<Object> get props => [];
 }
 
+class OnSuccessPage extends PageState {
+  final UserModel user;
+  
+  const OnSuccessPage(this.user);
+  
+  @override
+  List<Object> get props => [];
+}
+
 class OnDetailDestinationPage extends PageState {
   final DestinationModel destination;
 
-  OnDetailDestinationPage(this.destination);
+  const OnDetailDestinationPage(this.destination);
 
   @override
   List<Object> get props => [destination];
@@ -124,7 +133,7 @@ class OnDetailDestinationPage extends PageState {
 class OnDetailHotelPage extends PageState {
   final DestinationModel hotel;
 
-  OnDetailHotelPage(this.hotel);
+  const OnDetailHotelPage(this.hotel);
 
   @override
   List<Object> get props => [hotel];
@@ -133,16 +142,25 @@ class OnDetailHotelPage extends PageState {
 class OnDetailPaketPage extends PageState {
   final DestinationModel paket;
 
-  OnDetailPaketPage(this.paket);
+  const OnDetailPaketPage(this.paket);
 
   @override
   List<Object> get props => [paket];
 }
 
+class OnBookingPage extends PageState {
+  final DestinationModel booking;
+
+  const OnBookingPage(this.booking);
+
+  @override
+  List<Object> get props => [booking];
+}
+
 class OnMainPage extends PageState {
   final int bottomNavBarIndex;
 
-  OnMainPage({this.bottomNavBarIndex = 0});
+  const OnMainPage({this.bottomNavBarIndex = 0});
 
   @override
   List<Object> get props => [bottomNavBarIndex];
@@ -151,7 +169,7 @@ class OnMainPage extends PageState {
 class OnEditProfilePage extends PageState {
   final UserModel user;
 
-  OnEditProfilePage(this.user);
+  const OnEditProfilePage(this.user);
 
   @override
   List<Object> get props => [user];
