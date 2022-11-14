@@ -4,11 +4,15 @@ class DestinationServices {
   CollectionReference _destinationReference =
       FirebaseFirestore.instance.collection('destinations');
 
+  CollectionReference _bookingReference =
+      FirebaseFirestore.instance.collection('booking');
+
   CollectionReference _hotelsReference =
       FirebaseFirestore.instance.collection('hotels');
 
   CollectionReference _transportationReference =
       FirebaseFirestore.instance.collection('transportation');
+
   CollectionReference _guideTourReference =
       FirebaseFirestore.instance.collection('guideTour');
 
@@ -17,6 +21,7 @@ class DestinationServices {
 
   CollectionReference _infoReference =
       FirebaseFirestore.instance.collection('info');
+
   Future<List<DestinationModel>> getDestination() async {
     try {
       QuerySnapshot result = await _destinationReference.get();
@@ -118,6 +123,24 @@ class DestinationServices {
       ).toList();
       print(guideTour);
       return guideTour;
+    } catch (e) {
+      print(e);
+
+      throw Exception(e);
+    }
+  }
+
+  Future<List<DestinationModel>> getBooking() async {
+    try {
+      QuerySnapshot result = await _bookingReference.get();
+
+      List<DestinationModel> hotels = result.docs.map(
+        (e) {
+          return DestinationModel.fromJson(e.data() as Map<String, dynamic>);
+        },
+      ).toList();
+      print(hotels);
+      return hotels;
     } catch (e) {
       print(e);
 
