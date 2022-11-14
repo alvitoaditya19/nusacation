@@ -76,9 +76,9 @@ part 'guide_tour_page.dart';
 part 'booking_page.dart';
 
 
-part 'detail_page_nonpaket.dart';
-part 'detail_page_hotel.dart';
-part 'detail_page_paket.dart';
+part 'detail_page_one.dart';
+part 'detail_page_two.dart';
+part 'detail_page_three.dart';
 
 
 part 'detail_info_page.dart';

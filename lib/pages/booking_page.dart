@@ -14,6 +14,7 @@ class _BookingPageState extends State<BookingPage> {
   String time = 'Tap to Select the Date';
   bool dateService = true;
   DateTime _dateTime = DateTime.now();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String payment = 'Pilih Metode\nPembayaran';
 
   void _add() {
@@ -36,14 +37,25 @@ class _BookingPageState extends State<BookingPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    // jml.cancel();
+    // _onBackPressed(context);
+    // this.context.read<PageBloc>().add(GoToMainPage());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.read<PageBloc>().add(GoToMainPage());
+          context
+              .read<PageBloc>()
+              .add(GoToDetailDestinationPage(widget.booking!));
 
           return true;
         },
         child: Scaffold(
+            key: _scaffoldKey,
             backgroundColor: kBackgroundColor,
             appBar: AppBar(
               leading: IconButton(
@@ -103,23 +115,44 @@ class _BookingPageState extends State<BookingPage> {
                                               color: kBlueColor,
                                               size: 50,
                                             ),
-                                            Container(
-                                              width: 50,
-                                              height: 50,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                image: DecorationImage(
-                                                  image: (userState.user
-                                                              .profilePicture ==
-                                                          ""
-                                                      ? AssetImage(
-                                                              "assets/user_pic.png")
-                                                          as ImageProvider
-                                                      : NetworkImage(userState
-                                                              .user
-                                                              .profilePicture ??
-                                                          "No Data")),
-                                                  fit: BoxFit.cover,
+                                            GestureDetector(
+                                                        onTap: () {
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToSuccessPage(userState.user));
+                                  FirebaseFirestore.instance
+                                      .runTransaction((transaction) async {
+                                    CollectionReference reference =
+                                        FirebaseFirestore.instance
+                                            .collection("dataTiket");
+                                    await reference.add({
+                                      "user_id": userState.user.id,
+                                      "Place": widget.booking!.name!,
+                                      "Date": time,
+                                      "Price": "${widget.booking!.price}",
+                                      "Traveler": jml,
+                                      "Payment": payment
+                                    });
+                                  });
+                                },
+                                              child: Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  image: DecorationImage(
+                                                    image: (userState.user
+                                                                .profilePicture ==
+                                                            ""
+                                                        ? AssetImage(
+                                                                "assets/user_pic.png")
+                                                            as ImageProvider
+                                                        : NetworkImage(userState
+                                                                .user
+                                                                .profilePicture ??
+                                                            "No Data")),
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -535,8 +568,8 @@ class _BookingPageState extends State<BookingPage> {
                                         onPressed: () {
                                           if ((userState.user.balance! >=
                                                   (jml *
-                                                      widget
-                                                          .booking!.price!)) &&
+                                                      widget.booking!
+                                                          .price!)) &&
                                               time !=
                                                   'Tap to Select the Date' &&
                                               payment == 'Account Balance') {
@@ -549,7 +582,8 @@ class _BookingPageState extends State<BookingPage> {
                                               buttons: [
                                                 DialogButton(
                                                   onPressed: () =>
-                                                      Navigator.pop(context),
+                                                      Navigator.of(context)
+                                                          .pop(),
                                                   color: kRedColor,
                                                   child: Text(
                                                     "Cancel",
@@ -560,32 +594,32 @@ class _BookingPageState extends State<BookingPage> {
                                                 ),
                                                 DialogButton(
                                                   onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) => SuccessPage(userState.user),
-                                                      ),
-                                                    );
-                                                    FirebaseFirestore.instance
-                                                        .runTransaction(
-                                                            (transaction) async {
-                                                      CollectionReference
-                                                          reference =
-                                                          FirebaseFirestore
-                                                              .instance
-                                                              .collection(
-                                                                  "dataTiket");
-                                                      await reference.add({
-                                                        "user_id": userState.user.id,
-                                                        "Place": widget
-                                                            .booking!.name!,
-                                                        "Date": time,
-                                                        "Price":
-                                                            "${jml * widget.booking!.price!}",
-                                                        "Traveler": jml,
-                                                        "Payment": payment
-                                                      });
-                                                    });
+                                                    // FirebaseFirestore.instance
+                                                    //     .runTransaction(
+                                                    //         (transaction) async {
+                                                    //   CollectionReference
+                                                    //       reference =
+                                                    //       FirebaseFirestore
+                                                    //           .instance
+                                                    //           .collection(
+                                                    //               "dataTiket");
+                                                    //   await reference.add({
+                                                    //     "user_id":
+                                                    //         userState.user.id,
+                                                    //     "Place": widget
+                                                    //         .booking!.name!,
+                                                    //     "Date": time,
+                                                    //     "Price":
+                                                    //         "${jml * widget.booking!.price!}",
+                                                    //     "Traveler": jml,
+                                                    //     "Payment": payment
+                                                    //   });
+                                                    // });
+
+                                                            context
+                                                    .read<PageBloc>()
+                                                    .add(GoToSuccessPage(
+                                                        userState.user));
                                                   },
                                                   width: 180,
                                                   child: Text(
@@ -618,50 +652,58 @@ class _BookingPageState extends State<BookingPage> {
                                               buttons: [
                                                 DialogButton(
                                                   onPressed: () =>
-                                                      Navigator.pop(context),
+                                                      Navigator.of(context)
+                                                          .pop(),
                                                   color: kRedColor,
                                                   child: Text(
                                                     "Cancel",
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
+                                                    style:
+                                                        GoogleFonts.poppins(
+                                                            color:
+                                                                Colors.white,
+                                                            fontSize: 20),
                                                   ),
                                                 ),
                                                 DialogButton(
+                                        
                                                   onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) => SuccessPage(userState.user),
-                                                      ),
-                                                    );
-                                                    FirebaseFirestore.instance
-                                                        .runTransaction(
-                                                            (transaction) async {
-                                                      CollectionReference
-                                                          reference =
-                                                          FirebaseFirestore
-                                                              .instance
-                                                              .collection(
-                                                                  "dataTiket");
-                                                      await reference.add({
-                                                        "user_id": userState.user.id,
-                                                        "Place": widget
-                                                            .booking!.name!,
-                                                        "Date": time,
-                                                        "Price":
-                                                            "${jml * widget.booking!.price!}",
-                                                        "Traveler": jml,
-                                                        "Payment": payment
-                                                      });
-                                                    });
+                                                    // FirebaseFirestore.instance
+                                                    //     .runTransaction(
+                                                    //         (transaction) async {
+                                                    //   CollectionReference
+                                                    //       reference =
+                                                    //       FirebaseFirestore
+                                                    //           .instance
+                                                    //           .collection(
+                                                    //               "dataTiket");
+                                                    //   await reference.add({
+                                                    //     "user_id":
+                                                    //         userState.user.id,
+                                                    //     "Place": widget
+                                                    //         .booking!.name!,
+                                                    //     "Date": time,
+                                                    //     "Price":
+                                                    //         "${jml * widget.booking!.price!}",
+                                                    //     "Traveler": jml,
+                                                    //     "Payment": payment
+                                                    //   });
+                                                    // });
+                                                     context
+                                                      .read<PageBloc>()
+                                                      .add(GoToSuccessPage(
+                                                          userState.user));
+                                                    // context
+                                                    //     .read<PageBloc>()
+                                                    //     .close();
                                                   },
                                                   width: 180,
                                                   child: Text(
                                                     "Book!",
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
+                                                    style:
+                                                        GoogleFonts.poppins(
+                                                            color:
+                                                                Colors.white,
+                                                            fontSize: 20),
                                                   ),
                                                 ),
                                               ],
@@ -687,9 +729,11 @@ class _BookingPageState extends State<BookingPage> {
                                                   width: 120,
                                                   child: Text(
                                                     "Charge",
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.white,
-                                                        fontSize: 20),
+                                                    style:
+                                                        GoogleFonts.poppins(
+                                                            color:
+                                                                Colors.white,
+                                                            fontSize: 20),
                                                   ),
                                                 )
                                               ],

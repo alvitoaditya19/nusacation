@@ -434,6 +434,8 @@ class DetailDestinationPage extends StatelessWidget {
                                 onPressed: () {
                                   // context.read<PageBloc>().add(
                                   //     GoToBookingPage(dokter!));
+                                  context.read<PageBloc>().add(
+                                                  GoToBookingPage(destination!));
                                   print("okeeeeeeeeeeee");
                                 },
                                 style: TextButton.styleFrom(
