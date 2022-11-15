@@ -5,11 +5,10 @@ class UserModel extends Equatable {
   final String email;
   final String? name;
   final String? profilePicture;
-  final String? selectedSchool;
   final int? balance;
 
  const UserModel(this.id, this.email,
-      {this.name, this.profilePicture, this.balance, this.selectedSchool});
+      {this.name, this.profilePicture, this.balance});
 
   @override
   String toString() {
@@ -20,10 +19,9 @@ class UserModel extends Equatable {
       UserModel(this.id, this.email,
           name: name ?? this.name,
           profilePicture: profilePicture ?? this.profilePicture,
-          balance: balance ?? this.balance,
-          selectedSchool: selectedSchool);
+          balance: balance ?? this.balance,);
 
   @override
   List<Object> get props =>
-      [id, email, name!, profilePicture!, selectedSchool!, balance!];
+      [id, email, name!, profilePicture!, balance!];
 }

@@ -11,7 +11,6 @@ class SuccessTopUpPage extends StatelessWidget {
     return WillPopScope(
         onWillPop: () async {
           context.read<PageBloc>().add(GoToMainPage());
-
           return true;
         },
         child: Scaffold(
@@ -69,6 +68,8 @@ class SuccessTopUpPage extends StatelessWidget {
                                   context
                                       .read<PageBloc>()
                                       .add(GoToMainPage(bottomNavBarIndex: 1));
+
+
                                 }),
                           ),
                         ],

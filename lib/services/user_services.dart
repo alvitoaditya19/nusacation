@@ -9,7 +9,6 @@ class UserServices {
       'email': user.email,
       'name': user.name,
       'balance': user.balance,
-      'selectedSchool': user.selectedSchool,
       'profilePicture': user.profilePicture ?? ""
     });
   }

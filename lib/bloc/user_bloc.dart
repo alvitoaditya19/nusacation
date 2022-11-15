@@ -12,29 +12,35 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc()
       : super(
           UserInitial(),
-        ){
-
+        ) {
     on<UserEvent>(mapEventToState);
+    // on<UpdateData>((event, emit) async {
+    //   UserModel updatedUserr = (state as UserLoaded).user.copyWith();
+    //   UserModel updatedUser = (state as UserLoaded)
+    //       .user
+    //       .copyWith(name: event.name, profilePicture: event.profileImage);
 
-        }
-  @override
-  void mapEventToState(
-    UserEvent event, Emitter<UserState> emit)
-  async {
+    //   await UserServices.updateUser(updatedUser);
+
+    //   emit(UserLoaded(updatedUserr));
+    // });
+  }
+
+  void mapEventToState(event, emit) async {
     if (event is LoadUser) {
       UserModel user = await UserServices.getUser(event.id);
 
-      emit( UserLoaded(user));
+      emit(UserLoaded(user));
     } else if (event is SignOut) {
       emit(UserInitial());
     } else if (event is UpdateData) {
       UserModel updatedUser = (state as UserLoaded)
           .user
-          .copyWith(name: event.name!, profilePicture: event.profileImage!);
+          .copyWith(name: event.name, profilePicture: event.profileImage);
 
       await UserServices.updateUser(updatedUser);
 
-      emit( UserLoaded(updatedUser));
+      emit (UserLoaded(updatedUser));
     }else if (event is TopUp) {
       if (state is UserLoaded) {
         try {
@@ -43,11 +49,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
           await UserServices.updateUser(updatedUser);
 
-          emit( UserLoaded(updatedUser));
+          emit(UserLoaded(updatedUser));
         } catch (e) {
           print(e);
         }
       }
-    } 
+    }
   }
 }

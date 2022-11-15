@@ -262,11 +262,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           context.read<UserBloc>().add(
                                               UpdateData(
                                                   name: nameController!.text,
-                                                  profileImage: profilePath));
+                                                  profileImage: profilePath!));
 
                                           context
                                               .read<PageBloc>()
-                                              .add(GoToMenuPage());
+                                              .add(GoToMainPage());
                                         }
                                       : null),
                             ),
