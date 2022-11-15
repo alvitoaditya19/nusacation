@@ -6,6 +6,7 @@ export 'destination_bloc.dart';
 export 'transportation_bloc.dart';
 export 'paket_bloc.dart';
 export 'info_bloc.dart';
+export 'booking_bloc.dart';
 
 
 

@@ -157,6 +157,24 @@ class OnBookingPage extends PageState {
   List<Object> get props => [booking];
 }
 
+class OnBookingLainPage extends PageState {
+  final DestinationModel bookinglain;
+
+  const OnBookingLainPage(this.bookinglain);
+
+  @override
+  List<Object> get props => [bookinglain];
+}
+
+class OnDestBookingPage extends PageState {
+  final DestinationModel destBooking;
+
+  const OnDestBookingPage(this.destBooking);
+
+  @override
+  List<Object> get props => [destBooking];
+}
+
 class OnMainPage extends PageState {
   final int bottomNavBarIndex;
 
