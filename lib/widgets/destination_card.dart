@@ -75,7 +75,7 @@ class DestinationCard extends StatelessWidget {
                                  NumberFormat.currency(
                                     locale: "id_ID",
                                     decimalDigits: 0,
-                                    symbol: "IDR ")
+                                    symbol: "Rp. ")
                                 .format(destination!.price!),
                               style: blueTextStyle.copyWith(
                                 fontWeight: medium,

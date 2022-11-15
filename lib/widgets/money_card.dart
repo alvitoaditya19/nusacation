@@ -33,7 +33,7 @@ class MoneyCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "IDR",
+              "Rp.",
               style: greyTextFont.copyWith(
                   fontSize: 16, fontWeight: FontWeight.w400),
             ),

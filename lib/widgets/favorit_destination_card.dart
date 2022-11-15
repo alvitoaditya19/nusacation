@@ -66,7 +66,7 @@ class FavoritDestinationCard extends StatelessWidget {
                             height: 2,
                           ),
                           Text(
-                            'IDR 421.833',
+                            'Rp. 421.833',
                             style: blueTextStyle.copyWith(
                               fontWeight: medium,
                               fontSize: 14,
