@@ -31,11 +31,14 @@ class _SignUpPageState extends State<SignUpPage> {
         margin: EdgeInsets.only(
           top: defaultMargin,
         ),
-        child: Text(
-          'Create New \nYour Account',
-          style: blackTextStyle.copyWith(
-            fontSize: 24,
-            fontWeight: semiBold,
+        child: Center(
+          child: Text(
+            'Daftarkan Dirimu, \nJadilah Penjelajah!',
+            style: blackTextStyle.copyWith(
+              fontSize: 24,
+              fontWeight: semiBold,
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
       );
@@ -96,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Full Name',
+                'Nama Pengguna',
                 style: blackTextStyle,
               ),
               SizedBox(
@@ -106,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: nameController,
                 cursorColor: kBlackColor,
                 decoration: InputDecoration(
-                  hintText: 'Full Name',
+                  hintText: 'Nama Pengguna',
                   hintStyle: blackTextStyle.copyWith(
                     fontSize: 16,
                   ),
@@ -138,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Email Address',
+                'Alamat Email',
                 style: blackTextStyle,
               ),
               SizedBox(
@@ -148,7 +151,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: emailController,
                 cursorColor: kBlackColor,
                 decoration: InputDecoration(
-                  hintText: 'Email Address',
+                  hintText: 'Alamat Email',
                   hintStyle: blackTextStyle.copyWith(
                     fontSize: 16,
                   ),
@@ -180,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Password',
+                'Kata Sandi',
                 style: blackTextStyle,
               ),
               SizedBox(
@@ -191,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 cursorColor: kBlackColor,
                 obscureText: true,
                 decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: 'Kata Sandi',
                     hintStyle: blackTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -231,7 +234,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Re-Password',
+                'Konfirmasi Kata Sandi',
                 style: blackTextStyle,
               ),
               SizedBox(
@@ -242,7 +245,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 cursorColor: kBlackColor,
                 obscureText: true,
                 decoration: InputDecoration(
-                    hintText: 'Re-Password',
+                    hintText: 'Konfirmasi Kata Sandi',
                     hintStyle: blackTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -290,7 +293,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   duration: Duration(milliseconds: 1500),
                   flushbarPosition: FlushbarPosition.TOP,
                   backgroundColor: Color(0xFFFF5C83),
-                  message: "Please fill all the fields",
+                  message: "Mohon isi semua data!",
                 )..show(context);
               } else if (passwordController.text !=
                   retypePasswordController.text) {
@@ -298,21 +301,21 @@ class _SignUpPageState extends State<SignUpPage> {
                   duration: Duration(milliseconds: 1500),
                   flushbarPosition: FlushbarPosition.TOP,
                   backgroundColor: Color(0xFFFF5C83),
-                  message: "Mismatch password and confirmed password",
+                  message: "Kata Sandi tidak sama dengan yang diketik ulang!",
                 )..show(context);
               } else if (passwordController.text.length < 6) {
                 Flushbar(
                   duration: Duration(milliseconds: 1500),
                   flushbarPosition: FlushbarPosition.TOP,
                   backgroundColor: Color(0xFFFF5C83),
-                  message: "Password's length min 6 characters",
+                  message: "Kata Sandi minimal memiliki 6 karakter",
                 )..show(context);
               } else if (!EmailValidator.validate(emailController.text)) {
                 Flushbar(
                   duration: Duration(milliseconds: 1500),
                   flushbarPosition: FlushbarPosition.TOP,
                   backgroundColor: Color(0xFFFF5C83),
-                  message: "Wrong formatted email address",
+                  message: "Format Email salah!",
                 )..show(context);
               } else {
                 widget.registrationData!.name = nameController.text;
@@ -331,7 +334,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             child: Text(
-              'Sign-Up',
+              'Daftar',
               style: whiteTextStyle.copyWith(
                 fontWeight: medium,
                 fontSize: 18,
@@ -347,7 +350,7 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Row(
             children: [
               Text(
-                'Already have an account?',
+                'Sudah pernah daftar?',
                 style: blackTextStyle.copyWith(
                   fontWeight: medium,
                   fontSize: 16,
@@ -358,7 +361,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   context.read<PageBloc>().add(GoToSignInPage());
                 },
                 child: Text(
-                  ' Sign-In',
+                  ' Masuk disini',
                   style: blueTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: 16,

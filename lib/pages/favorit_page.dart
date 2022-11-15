@@ -15,18 +15,11 @@ class _FavoritPageState extends State<FavoritPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              ' You don\'t have destination dream',
-              style: blackTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: medium,
-              ),
-            ),
             SizedBox(
               height: 12,
             ),
             Text(
-              'Let\'s find your destination dream',
+              'Kamu Belum Memiliki Tempat Favorit',
               style: grey3TextStyle,
             ),
             SizedBox(

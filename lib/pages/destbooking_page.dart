@@ -1,15 +1,15 @@
 part of 'pages.dart';
 
-class BookingPage extends StatefulWidget {
-  final DestinationModel? booking;
+class DestBookingPage extends StatefulWidget {
+  final DestinationModel? destBooking;
 
-  const BookingPage(this.booking, {super.key});
+  const DestBookingPage(this.destBooking, {super.key});
 
   @override
-  State<BookingPage> createState() => _BookingPageState();
+  State<DestBookingPage> createState() => _DestBookingPageState();
 }
 
-class _BookingPageState extends State<BookingPage> {
+class _DestBookingPageState extends State<DestBookingPage> {
   int jml = 1;
   String time = 'Pilih Tanggal';
   bool dateService = true;
@@ -26,6 +26,13 @@ class _BookingPageState extends State<BookingPage> {
     setState(() {
       jml -= 1;
     });
+  }
+
+  var whatsapp = "+6282297145285";
+
+  void customLaunch(command) async {
+    // ignore: deprecated_member_use
+    await launch(command);
   }
 
   @override
@@ -211,7 +218,7 @@ class _BookingPageState extends State<BookingPage> {
                                                         image: DecorationImage(
                                                             fit: BoxFit.cover,
                                                             image: NetworkImage(
-                                                                widget.booking!
+                                                                widget.destBooking!
                                                                     .imageUrl!)))),
                                                 SizedBox(
                                                   width: 10,
@@ -223,7 +230,7 @@ class _BookingPageState extends State<BookingPage> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        widget.booking!.name!,
+                                                        widget.destBooking!.name!,
                                                         style: blackTextStyle
                                                             .copyWith(
                                                           fontWeight: medium,
@@ -237,7 +244,7 @@ class _BookingPageState extends State<BookingPage> {
                                                       ),
                                                       Text(
                                                         widget
-                                                            .booking!.location!,
+                                                            .destBooking!.location!,
                                                         style: greyTextStyle
                                                             .copyWith(
                                                           fontWeight: light,
@@ -389,7 +396,7 @@ class _BookingPageState extends State<BookingPage> {
                                             RowDetails(
                                               det1: 'Harga (per Tiket)',
                                               det2: r"$ " +
-                                                  widget.booking!.price!
+                                                  widget.destBooking!.price!
                                                       .toString(),
                                               clr: kBlackColor,
                                               weight: semiBold,
@@ -397,7 +404,7 @@ class _BookingPageState extends State<BookingPage> {
                                             RowDetails(
                                               det1: 'Total Harga',
                                               det2: r"$ " +
-                                                  "${jml * widget.booking!.price!}",
+                                                  "${jml * widget.destBooking!.price!}",
                                               clr: kBlueColor,
                                               weight: semiBold,
                                             ),
@@ -539,7 +546,7 @@ class _BookingPageState extends State<BookingPage> {
                                           if ((userState.user.balance! >=
                                                   (jml *
                                                       widget
-                                                          .booking!.price!)) &&
+                                                          .destBooking!.price!)) &&
                                               time !=
                                                   'Pilih Tanggal' &&
                                               payment == 'My Nusacash') {
@@ -572,16 +579,17 @@ class _BookingPageState extends State<BookingPage> {
                                                           FirebaseFirestore
                                                               .instance
                                                               .collection(
-                                                                  "dataTiket");
+                                                                  "dataTiketDestinasi");
                                                       await reference.add({
                                                         "user_id": userState.user.id,
                                                         "Place": widget
-                                                            .booking!.name!,
+                                                            .destBooking!.name!,
                                                         "Date": time,
                                                         "Price":
-                                                            "${jml * widget.booking!.price!}",
+                                                            "${jml * widget.destBooking!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
+                                                        "Gambar": widget.destBooking!.imageUrl
                                                       });
                                                     });
                                                     Navigator.pop(context);
@@ -637,17 +645,17 @@ class _BookingPageState extends State<BookingPage> {
                                                           FirebaseFirestore
                                                               .instance
                                                               .collection(
-                                                                  "dataTiket");
+                                                                  "dataTiketDestinasi");
                                                       await reference.add({
                                                         "user_id": userState.user.id,
                                                         "Place": widget
-                                                            .booking!.name!,
+                                                            .destBooking!.name!,
                                                         "Date": time,
                                                         "Price":
-                                                            "${jml * widget.booking!.price!}",
+                                                            "${jml * widget.destBooking!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
-                                                        "City": widget.booking!.city
+                                                        "Gambar": widget.destBooking!.imageUrl
                                                       });
                                                     });
                                                     Navigator.pop(context);

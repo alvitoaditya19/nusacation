@@ -57,7 +57,7 @@ class ProfilePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Howdy, ${userState.user.name!}',
+                                '${userState.user.name!}',
                                 style: blackTextStyle.copyWith(
                                     fontWeight: medium, fontSize: 16),
                                 overflow: TextOverflow.clip,
@@ -69,7 +69,7 @@ class ProfilePage extends StatelessWidget {
                                 NumberFormat.currency(
                                         locale: "id_ID",
                                         decimalDigits: 0,
-                                        symbol: "IDR ")
+                                        symbol: "Rp. ")
                                     .format(userState.user.balance ?? "0"),
                                 style: grey3TextStyle.copyWith(fontSize: 14),
                               ),
@@ -150,7 +150,7 @@ class ProfilePage extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                'Account',
+                'Akun',
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semiBold,
@@ -161,20 +161,17 @@ class ProfilePage extends StatelessWidget {
                   context.read<PageBloc>().add(GoToEditProfilePage(data));
                 },
                 child: menuItem(
-                  'Edit Profile',
+                  'Ubah Profile',
                 ),
               ),
               menuItem(
-                'Your Orders',
-              ),
-              menuItem(
-                'Help',
+                'Bantuan',
               ),
               SizedBox(
                 height: 30,
               ),
               Text(
-                'General',
+                'Tentang Aplikasi',
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semiBold,

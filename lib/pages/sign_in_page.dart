@@ -24,7 +24,7 @@ class _SignInPageState extends State<SignInPage> {
           top: defaultMargin,
         ),
         child: Text(
-          'Get Ready for\nTreatment with Us',
+          'Selamat Datang kembali,\nPenjelajah!',
           style: blackTextStyle.copyWith(
             fontSize: 24,
             fontWeight: semiBold,
@@ -41,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Email Address',
+                'Alamat Email',
                 style: blackTextStyle,
               ),
               SizedBox(
@@ -57,7 +57,7 @@ class _SignInPageState extends State<SignInPage> {
                 controller: emailController,
                 cursorColor: kBlackColor,
                 decoration: InputDecoration(
-                  hintText: 'Email Address',
+                  hintText: 'Alamat Email',
                   hintStyle: blackTextStyle.copyWith(
                     fontSize: 16,
                   ),
@@ -89,7 +89,7 @@ class _SignInPageState extends State<SignInPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Password',
+                'Kata Sandi',
                 style: blackTextStyle,
               ),
               SizedBox(
@@ -107,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                 cursorColor: kBlackColor,
                 obscureText: _isObscure,
                 decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: 'Kata Sandi',
                     hintStyle: blackTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -180,7 +180,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   child: Text(
-                    'Sign-In',
+                    'Masuk',
                     style: whiteTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 18,
@@ -196,7 +196,7 @@ class _SignInPageState extends State<SignInPage> {
           child: Row(
             children: [
               Text(
-                'Don’t have an account?',
+                'Kamu Penjelajah baru?',
                 style: blackTextStyle.copyWith(
                   fontWeight: medium,
                   fontSize: 16,
@@ -209,7 +209,7 @@ class _SignInPageState extends State<SignInPage> {
                       .add(GoToRegistrationPage(RegistrationData()));
                 },
                 child: Text(
-                  ' Sign-Up',
+                  ' Daftar disini!',
                   style: blueTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: 16,

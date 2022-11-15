@@ -92,7 +92,7 @@ class _MenuPageState extends State<MenuPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Howdy, ${userState.user.name!}',
+                              'Hai, ${userState.user.name!}',
                               style: blackTextStyle.copyWith(
                                   fontWeight: medium, fontSize: 16),
                               overflow: TextOverflow.clip,
@@ -104,8 +104,8 @@ class _MenuPageState extends State<MenuPage> {
                               NumberFormat.currency(
                                       locale: "id_ID",
                                       decimalDigits: 0,
-                                      symbol: "IDR ")
-                                  .format(userState.user.balance ?? "0"),
+                                      symbol: "Rp. ")
+                                  .format(userState.user.balance ?? "0") + ' Nusacash',
                               style: grey3TextStyle.copyWith(fontSize: 14),
                             ),
                             SizedBox(
@@ -377,7 +377,7 @@ class _MenuPageState extends State<MenuPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Recommended',
+              'Jelajahi Nusa Tenggara !',
               style: blackTextStyle.copyWith(
                 fontSize: 18,
                 fontWeight: medium,
@@ -413,7 +413,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Hotels',
+                          'Penginapan',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -445,7 +445,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Transport',
+                          'Kendaraan',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -477,7 +477,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Guide Tour',
+                          'Pemandu',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -509,7 +509,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Info',
+                          'Berita',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -533,7 +533,7 @@ class _MenuPageState extends State<MenuPage> {
           children: <Widget>[
             Expanded(
               child: Text(
-                'Vacation Spot',
+                'Rekomendasi Tempat',
                 style: blackTextStyle.copyWith(
                   fontWeight: medium,
                   fontSize: 18,

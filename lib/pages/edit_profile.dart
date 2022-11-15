@@ -49,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         height: 20,
                       ),
                       Text(
-                        "Edit Profile\nKamu",
+                        "Ubah Profile\nKamu",
                         textAlign: TextAlign.center,
                         style: blackTextFont.copyWith(fontSize: 20),
                       ),
@@ -122,7 +122,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30)),
-                            labelText: "User ID",
+                            labelText: "ID Pengguna",
                           ),
                         ),
                       ),
@@ -137,7 +137,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30)),
-                            labelText: "Email Address",
+                            labelText: "Alamat Email",
                           ),
                         ),
                       ),
@@ -158,8 +158,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30)),
-                            labelText: "Full Name",
-                            hintText: "Full Name"),
+                            labelText: "Nama Pengguna",
+                            hintText: "Nama Pengguna"),
                       ),
                       SizedBox(
                         height: 30,
@@ -241,7 +241,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     backgroundColor: Color(0xFF3E9D9D),
                                   ),
                                   child: Text(
-                                    "Update My Profile",
+                                    "Perbarui",
                                     style: whiteTextFont.copyWith(
                                         fontSize: 16,
                                         color: (isDataEdited)

@@ -35,9 +35,9 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                     height: 70,
                     child: Center(
                       child: Text(
-                        "Confim\nNew Account",
+                        "Konfirmasi Akun",
                         style: blackTextStyle.copyWith(
-                          fontSize: 24,
+                          fontSize: 22,
                           fontWeight: semiBold,
                         ),
                         textAlign: TextAlign.center,
@@ -94,7 +94,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                             ),
                       
                               child: Text(
-                                "Buat Akun Saya",
+                                "Konfirmasi",
                                 style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,

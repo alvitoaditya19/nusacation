@@ -5,15 +5,17 @@ import 'dart:math' as math;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:ticket_widget/ticket_widget.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nusacation/bloc/blocs.dart';
@@ -76,9 +78,9 @@ part 'guide_tour_page.dart';
 part 'booking_page.dart';
 
 
-part 'detail_page_one.dart';
-part 'detail_page_two.dart';
-part 'detail_page_three.dart';
+part 'detail_page_nonpaket.dart';
+part 'detail_page_hotel.dart';
+part 'detail_page_paket.dart';
 
 
 part 'detail_info_page.dart';
@@ -93,3 +95,8 @@ part 'favorit_page.dart';
 part 'ticket_page.dart';
 part 'wrapper.dart';
 part 'success_page.dart';
+part 'destbooking_page.dart';
+part 'bookinglain_page.dart';
+part 'destination_ticket.dart';
+part 'tiket_paket.dart';
+part 'tiket_akomodasi.dart';

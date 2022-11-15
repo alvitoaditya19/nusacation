@@ -1,15 +1,15 @@
 part of 'pages.dart';
 
-class BookingPage extends StatefulWidget {
-  final DestinationModel? booking;
+class BookingLainPage extends StatefulWidget {
+  final DestinationModel? bookinglain;
 
-  const BookingPage(this.booking, {super.key});
+  const BookingLainPage(this.bookinglain, {super.key});
 
   @override
-  State<BookingPage> createState() => _BookingPageState();
+  State<BookingLainPage> createState() => _BookingLainPageState();
 }
 
-class _BookingPageState extends State<BookingPage> {
+class _BookingLainPageState extends State<BookingLainPage> {
   int jml = 1;
   String time = 'Pilih Tanggal';
   bool dateService = true;
@@ -211,7 +211,7 @@ class _BookingPageState extends State<BookingPage> {
                                                         image: DecorationImage(
                                                             fit: BoxFit.cover,
                                                             image: NetworkImage(
-                                                                widget.booking!
+                                                                widget.bookinglain!
                                                                     .imageUrl!)))),
                                                 SizedBox(
                                                   width: 10,
@@ -223,7 +223,7 @@ class _BookingPageState extends State<BookingPage> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        widget.booking!.name!,
+                                                        widget.bookinglain!.name!,
                                                         style: blackTextStyle
                                                             .copyWith(
                                                           fontWeight: medium,
@@ -237,7 +237,7 @@ class _BookingPageState extends State<BookingPage> {
                                                       ),
                                                       Text(
                                                         widget
-                                                            .booking!.location!,
+                                                            .bookinglain!.location!,
                                                         style: greyTextStyle
                                                             .copyWith(
                                                           fontWeight: light,
@@ -389,7 +389,7 @@ class _BookingPageState extends State<BookingPage> {
                                             RowDetails(
                                               det1: 'Harga (per Tiket)',
                                               det2: r"$ " +
-                                                  widget.booking!.price!
+                                                  widget.bookinglain!.price!
                                                       .toString(),
                                               clr: kBlackColor,
                                               weight: semiBold,
@@ -397,7 +397,7 @@ class _BookingPageState extends State<BookingPage> {
                                             RowDetails(
                                               det1: 'Total Harga',
                                               det2: r"$ " +
-                                                  "${jml * widget.booking!.price!}",
+                                                  "${jml * widget.bookinglain!.price!}",
                                               clr: kBlueColor,
                                               weight: semiBold,
                                             ),
@@ -539,7 +539,7 @@ class _BookingPageState extends State<BookingPage> {
                                           if ((userState.user.balance! >=
                                                   (jml *
                                                       widget
-                                                          .booking!.price!)) &&
+                                                          .bookinglain!.price!)) &&
                                               time !=
                                                   'Pilih Tanggal' &&
                                               payment == 'My Nusacash') {
@@ -572,16 +572,17 @@ class _BookingPageState extends State<BookingPage> {
                                                           FirebaseFirestore
                                                               .instance
                                                               .collection(
-                                                                  "dataTiket");
+                                                                  "dataTiketAkomodasi");
                                                       await reference.add({
                                                         "user_id": userState.user.id,
                                                         "Place": widget
-                                                            .booking!.name!,
+                                                            .bookinglain!.name!,
                                                         "Date": time,
                                                         "Price":
-                                                            "${jml * widget.booking!.price!}",
+                                                            "${jml * widget.bookinglain!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
+                                                        "Gambar": widget.bookinglain!.imageUrl
                                                       });
                                                     });
                                                     Navigator.pop(context);
@@ -637,17 +638,17 @@ class _BookingPageState extends State<BookingPage> {
                                                           FirebaseFirestore
                                                               .instance
                                                               .collection(
-                                                                  "dataTiket");
+                                                                  "dataTiketAkomodasi");
                                                       await reference.add({
                                                         "user_id": userState.user.id,
                                                         "Place": widget
-                                                            .booking!.name!,
+                                                            .bookinglain!.name!,
                                                         "Date": time,
                                                         "Price":
-                                                            "${jml * widget.booking!.price!}",
+                                                            "${jml * widget.bookinglain!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
-                                                        "City": widget.booking!.city
+                                                        "Gambar": widget.bookinglain!.imageUrl
                                                       });
                                                     });
                                                     Navigator.pop(context);

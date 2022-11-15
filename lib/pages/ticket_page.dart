@@ -1,5 +1,6 @@
 part of 'pages.dart';
 
+
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});
 
@@ -10,31 +11,31 @@ class TicketPage extends StatefulWidget {
 class _TicketPageState extends State<TicketPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: kBackgroundColor,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              margin:
-                  EdgeInsets.only(left: defaultMargin, right: defaultMargin),
-              child: Column(children: [
-                SizedBox(
-                  height: 24,
-                ),
-                Center(
-                  child: Text(
-                    'My Ticket',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: medium,
-                    ),
-                  ),
-                ),
-
-                // DestinationCard()
-              ]),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(child: Text('Destinasi')),
+                Tab(child: Text('Paket')),
+                Tab(child: Text('Akomodasi')),
+              ],
             ),
+            title: const Text('Tiket Saya'),
+            centerTitle: true,
           ),
-        ));
+          body: const TabBarView(
+            children: [
+              DestinationTicket(),
+              TiketPaket(),
+              AkomodasiTicket()
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

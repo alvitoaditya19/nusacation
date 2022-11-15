@@ -74,6 +74,10 @@ class _WrapperState extends State<Wrapper> {
                                                                             ? EditProfilePage(pageState.user)
                                                                             : (pageState is OnBookingPage)
                                                                                 ? BookingPage(pageState.booking)
+                                                                                : (pageState is OnBookingLainPage)
+                                                                                ? BookingLainPage(pageState.bookinglain)
+                                                                                : (pageState is OnDestBookingPage)
+                                                                                ? DestBookingPage(pageState.destBooking)
                                                                                 : (pageState is OnSuccessPage)
                                                                                     ? SuccessPage(pageState.user)
                                                                                     : MainPage());

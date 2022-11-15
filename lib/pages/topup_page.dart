@@ -7,7 +7,7 @@ class TopUpPage extends StatefulWidget {
 }
 
 class _TopUpPageState extends State<TopUpPage> {
-  TextEditingController amountController = TextEditingController(text: 'IDR 0');
+  TextEditingController amountController = TextEditingController(text: 'Rp. 0');
   int selectedAmount = 0;
 
   @override
@@ -61,7 +61,7 @@ class _TopUpPageState extends State<TopUpPage> {
 
                           amountController.text = NumberFormat.currency(
                                   locale: 'id_ID',
-                                  symbol: 'IDR ',
+                                  symbol: 'Rp. ',
                                   decimalDigits: 0)
                               .format(selectedAmount);
 
@@ -204,7 +204,7 @@ class _TopUpPageState extends State<TopUpPage> {
           }
 
           amountController.text = NumberFormat.currency(
-                  locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ')
+                  locale: 'id_ID', decimalDigits: 0, symbol: 'Rp. ')
               .format(selectedAmount);
 
           amountController.selection = TextSelection.fromPosition(

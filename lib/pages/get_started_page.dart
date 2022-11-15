@@ -69,7 +69,7 @@ class GetStartedPage extends StatelessWidget {
                         color: kWhiteColor,
                       ),
                       child: Text(
-                        'Get Started',
+                        'Mulai',
                         style: blackTextStyle.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
