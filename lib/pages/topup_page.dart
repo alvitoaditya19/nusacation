@@ -1,7 +1,9 @@
 part of 'pages.dart';
 
 class TopUpPage extends StatefulWidget {
+    final PageEvent pageEvent;
 
+  TopUpPage(this.pageEvent);
   @override
   _TopUpPageState createState() => _TopUpPageState();
 }
@@ -19,7 +21,7 @@ class _TopUpPageState extends State<TopUpPage> {
         (MediaQuery.of(context).size.width - 2 * defaultMargin - 40) / 3;
 
     return WillPopScope(
-     onWillPop: () async {
+      onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
 
         return true;
@@ -30,7 +32,7 @@ class _TopUpPageState extends State<TopUpPage> {
             Stack(
               children: <Widget>[
                 // note: BACK ARROW
-         
+
                 // note: CONTENT
                 Container(
                   width: double.infinity,
@@ -130,53 +132,48 @@ class _TopUpPageState extends State<TopUpPage> {
                       SizedBox(
                         height: 100,
                       ),
-                              SizedBox(
-                                        height: 55,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.8,
-                                        child: BlocBuilder<UserBloc, UserState>(
-                                          builder: (_, userState) =>
-                                              ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              elevation: 0,
-                                              disabledBackgroundColor:
-                                                  Color(0xFFE4E4E4),
-                                              backgroundColor: kBlueColor,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                            ),
+                      SizedBox(
+                        height: 55,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: BlocBuilder<UserBloc, UserState>(
+                          builder: (_, userState) => ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              disabledBackgroundColor: Color(0xFFE4E4E4),
+                              backgroundColor: (selectedAmount > 0) ? kBlueColor : Color(0xffF4F4F4),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
 
-                                            child: Text(
-                                              "Top Up My Wallet",
-                                              style: whiteTextFont.copyWith(
-                                                  fontSize: 16,
-                                                  color: (selectedAmount > 0)
-                                                      ? Colors.white
-                                                      : Color(0xFFBEBEBE)),
-                                            ),
-                                            onPressed: () {},
-                                            // onPressed: (selectedAmount > 0)
-                                            //     ? () {
-                                            //         context.read<PageBloc>().add(GoToSuccessPage(
-                                            //             null,
-                                            //             NusacationTransaction(
-                                            //                 userID: (userState as UserLoaded)
-                                            //                     .user
-                                            //                     .id,
-                                            //                 title: "Top Up Wallet",
-                                            //                 amount: selectedAmount,
-                                            //                 subtitle:
-                                            //                     "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                            //                 time: DateTime.now())));
-                                            //       }
-                                            //     : null),
-                                          ),
-                                        ),
-                                      ),
-                             SizedBox(
+                            child: Text(
+                              "Top Up My Wallet",
+                              style: whiteTextFont.copyWith(
+                                  fontSize: 16,
+                                  color: (selectedAmount > 0)
+                                      ? Colors.white
+                                      : kBlackColor),
+                            ),
+                            // onPressed: () {},
+                            onPressed: (selectedAmount > 0)
+                                ? () {
+                                    context.read<PageBloc>().add(GoToSuccessTopUpPage(
+                                        null,
+                                        NusacationTransaction(
+                                            userID: (userState as UserLoaded)
+                                                .user
+                                                .id,
+                                            title: "Top Up Wallet",
+                                            amount: selectedAmount,
+                                            subtitle:
+                                                "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+                                            time: DateTime.now())));
+                                  }
+                                : null),
+                          ),
+                        ),
+                      
+                      SizedBox(
                         height: 100,
                       )
                     ],

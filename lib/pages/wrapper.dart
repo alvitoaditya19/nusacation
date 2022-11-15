@@ -75,11 +75,16 @@ class _WrapperState extends State<Wrapper> {
                                                                             : (pageState is OnBookingPage)
                                                                                 ? BookingPage(pageState.booking)
                                                                                 : (pageState is OnBookingLainPage)
-                                                                                ? BookingLainPage(pageState.bookinglain)
-                                                                                : (pageState is OnDestBookingPage)
-                                                                                ? DestBookingPage(pageState.destBooking)
-                                                                                : (pageState is OnSuccessPage)
-                                                                                    ? SuccessPage(pageState.user)
-                                                                                    : MainPage());
+                                                                                    ? BookingLainPage(pageState.bookinglain)
+                                                                                    : (pageState is OnDestBookingPage)
+                                                                                        ? DestBookingPage(pageState.destBooking)
+                                                                                        : (pageState is OnSuccessPage)
+                                                                                            ? SuccessPage(pageState.user)
+                                                                                            : (pageState is OnTopUpPage)
+                                                                                            
+                                                                                                ? TopUpPage(pageState.pageEvent)
+                                                                                                       : (pageState is OnSuccessTopUpPage)
+                                                                                            ? SuccessTopUpPage(pageState.destination,pageState.transaction)
+                                                                                                : MainPage());
   }
 }

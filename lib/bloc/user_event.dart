@@ -13,6 +13,15 @@ class LoadUser extends UserEvent {
   List<Object> get props => [id];
 }
 
+class TopUp extends UserEvent {
+  final int amount;
+
+  TopUp(this.amount);
+
+  @override
+  List<Object> get props => [amount];
+}
+
 class SignOut extends UserEvent {
   @override
   List<Object> get props => [];

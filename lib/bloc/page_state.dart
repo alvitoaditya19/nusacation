@@ -192,3 +192,22 @@ class OnEditProfilePage extends PageState {
   @override
   List<Object> get props => [user];
 }
+
+class OnTopUpPage extends PageState {
+  final PageEvent pageEvent;
+
+  OnTopUpPage(this.pageEvent);
+
+  @override
+  List<Object> get props => [pageEvent];
+}
+
+class OnSuccessTopUpPage extends PageState {
+  final DestinationModel? destination;
+  final NusacationTransaction? transaction;
+
+  OnSuccessTopUpPage(this.destination, this.transaction);
+
+  @override
+  List<Object> get props => [destination!, transaction!];
+}

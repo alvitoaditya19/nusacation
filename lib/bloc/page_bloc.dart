@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:nusacation/models/destination_model.dart';
 import 'package:nusacation/models/info_model.dart';
 import 'package:nusacation/models/models.dart';
+import 'package:nusacation/models/nusacation_transaction.dart';
 import 'package:nusacation/models/paket_model.dart';
 
 part 'page_event.dart';
@@ -48,9 +49,9 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnFavoritPage());
     } else if (event is GoToHotelsPage) {
       emit(OnHotelsPage());
-    }  else if (event is GoToTranportationPage) {
+    } else if (event is GoToTranportationPage) {
       emit(OnTransportationPage());
-    }  else if (event is GoToGuideTourPage) {
+    } else if (event is GoToGuideTourPage) {
       emit(OnGuideTourPage());
     } else if (event is GoToInfoPage) {
       emit(OnInfoPage());
@@ -68,8 +69,12 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       emit(OnDestBookingPage(event.destBooking));
     } else if (event is GoToSuccessPage) {
       emit(OnSuccessPage(event.user));
-    }else if (event is GoToEditProfilePage) {
+    } else if (event is GoToTopUpPage) {
+      emit(OnTopUpPage(event.pageEvent));
+    } else if (event is GoToSuccessTopUpPage) {
+      emit(OnSuccessTopUpPage(event.destination, event.transaction));
+    } else if (event is GoToEditProfilePage) {
       emit(OnEditProfilePage(event.user));
-    } 
+    }
   }
 }

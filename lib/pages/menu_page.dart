@@ -61,8 +61,7 @@ class _MenuPageState extends State<MenuPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        context.read<PageBloc>().add(GoToEditProfilePage(
-                            (userState as UserLoaded).user));
+                      
                       },
                       child: Container(
                         width: 70,
@@ -130,10 +129,8 @@ class _MenuPageState extends State<MenuPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TopUpPage()),
-                        );
+                        context.read<PageBloc>().add(GoToEditProfilePage(
+                            (userState as UserLoaded).user));
                       },
                       child: Container(
                         height: 54,
@@ -377,7 +374,7 @@ class _MenuPageState extends State<MenuPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Jelajahi Nusa Tenggara !',
+              'Jelajahi Nusa Tenggara',
               style: blackTextStyle.copyWith(
                 fontSize: 18,
                 fontWeight: medium,

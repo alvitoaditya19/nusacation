@@ -21,7 +21,7 @@ class TiketPaket extends StatelessWidget {
                       context: context,
                       removeTop: true,
                       removeBottom: true,
-                      child: StreamBuilder(
+                      child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
                               .collection("dataTiket")
                               .where('user_id', isEqualTo: userState.user.id)

@@ -91,13 +91,11 @@ class GoToHotelsPage extends PageEvent {
 }
 
 class GoToInfoPage extends PageEvent {
-
-
-
   const GoToInfoPage();
   @override
   List<Object> get props => [];
 }
+
 class GoToTranportationPage extends PageEvent {
   @override
   List<Object> get props => [];
@@ -105,7 +103,7 @@ class GoToTranportationPage extends PageEvent {
 
 class GoToSuccessPage extends PageEvent {
   final UserModel user;
-  
+
   const GoToSuccessPage(this.user);
   @override
   List<Object> get props => [];
@@ -117,7 +115,7 @@ class GoToGuideTourPage extends PageEvent {
 }
 
 class GoToDetailInfoPage extends PageEvent {
-    final InfoModel info;
+  final InfoModel info;
 
   const GoToDetailInfoPage(this.info);
   @override
@@ -190,4 +188,23 @@ class GoToEditProfilePage extends PageEvent {
 
   @override
   List<Object> get props => [user];
+}
+
+class GoToTopUpPage extends PageEvent {
+  final PageEvent pageEvent;
+
+  GoToTopUpPage(this.pageEvent);
+
+  @override
+  List<Object> get props => [pageEvent];
+}
+
+class GoToSuccessTopUpPage extends PageEvent {
+  final DestinationModel? destination;
+  final NusacationTransaction? transaction;
+
+  GoToSuccessTopUpPage(this.destination, this.transaction);
+
+  @override
+  List<Object> get props => [destination!, transaction!];
 }

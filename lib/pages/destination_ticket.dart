@@ -32,7 +32,8 @@ class DestinationTicket extends StatelessWidget {
                                   color: kBlueColor, size: 100);
                             } else if (snapshot.data!.size.bitLength == 0) {
                               return Center(
-                                child: Text('Kamu Belum Memiliki Tiket Destinasi',
+                                child: Text(
+                                    'Kamu Belum Memiliki Tiket Destinasi',
                                     style: grey3TextStyle),
                               );
                             }
@@ -78,8 +79,8 @@ class DestTicketList extends StatelessWidget {
                     right: 20.0, left: 20, top: 10, bottom: 10),
                 child: ExpansionTileCard(
                   borderRadius: BorderRadius.circular(10),
-                  baseColor: Colors.cyan[50],
-                  expandedColor: Color.fromARGB(255, 237, 229, 229),
+                  baseColor: kWhiteColor,
+                  expandedColor: Color(0xffC3F8FF),
                   key: key,
                   leading: CircleAvatar(
                     radius: 30.0,
@@ -87,8 +88,23 @@ class DestTicketList extends StatelessWidget {
                         NetworkImage(destTicket[index]["Gambar"].toString()),
                     backgroundColor: Colors.transparent,
                   ),
-                  title: Text(destTicket[index]["Place"].toString()),
-                  subtitle: Text("TIKET WISATA NON PAKET"),
+                  title: Text(
+                    destTicket[index]["Place"].toString(),
+                    style: blackTextStyle.copyWith(
+                      fontWeight: medium,
+                      fontSize: 14,
+                    ),
+                  ),
+                  subtitle: Container(
+                    margin: EdgeInsets.only(top: 4),
+                    child: Text(
+                      "Tiket Wisata Non Paket",
+                      style: blackTextStyle.copyWith(
+                        fontWeight: medium,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
                   children: <Widget>[
                     Divider(
                       thickness: 1.0,
@@ -132,8 +148,8 @@ class DestTicketList extends StatelessWidget {
                                           child: Text(
                                               "Scan QR Code dibawah Ini",
                                               style: blackTextStyle.copyWith(
-                                                fontWeight: semiBold,
-                                              )),
+                                                  fontWeight: semiBold,
+                                                  fontSize: 16)),
                                         ),
                                         children: [
                                           Image.asset('assets/qrcode.png')

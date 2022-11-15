@@ -35,6 +35,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       await UserServices.updateUser(updatedUser);
 
       emit( UserLoaded(updatedUser));
-    }
+    }else if (event is TopUp) {
+      if (state is UserLoaded) {
+        try {
+          UserModel updatedUser = (state as UserLoaded).user.copyWith(
+              balance: (state as UserLoaded).user.balance! + event.amount);
+
+          await UserServices.updateUser(updatedUser);
+
+          emit( UserLoaded(updatedUser));
+        } catch (e) {
+          print(e);
+        }
+      }
+    } 
   }
 }

@@ -25,6 +25,162 @@ class _MainPageState extends State<MainPage> {
     pageController = PageController(initialPage: bottomNavBarIndex!);
   }
 
+  void showDialogd(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            insetPadding: EdgeInsets.only(top: 120),
+            title: Center(
+              child: Text('Isi Ulang',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: medium,
+                  )),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
+              ),
+            ),
+            content: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    child: Column(
+                      children: <Widget>[
+                        TextField(
+                          onChanged: (text) {
+                            String temp = '';
+
+                            for (int i = 0; i < text.length; i++) {
+                              temp += text.isDigit(i) ? text[i] : '';
+                            }
+
+                            setState(() {
+                              selectedAmount = int.tryParse(temp) ?? 0;
+                            });
+
+                            amountController.text = NumberFormat.currency(
+                                    locale: 'id_ID',
+                                    symbol: 'Rp. ',
+                                    decimalDigits: 0)
+                                .format(selectedAmount);
+
+                            amountController.selection =
+                                TextSelection.fromPosition(TextPosition(
+                                    offset: amountController.text.length));
+                          },
+                          controller: amountController,
+                          decoration: InputDecoration(
+                            labelStyle: greyTextFont,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            labelText: "Jumlah",
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 20, bottom: 14),
+                            child: Text("Pilih Cepat", style: blackTextFont),
+                          ),
+                        ),
+                        Wrap(
+                          spacing: 20,
+                          runSpacing: 14,
+                          children: <Widget>[
+                            // makeMoneyCard(
+                            //   amount: 50000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 100000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 150000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 200000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 250000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 500000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 1000000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 2500000,
+                            //   width: cardWidth,
+                            // ),
+                            // makeMoneyCard(
+                            //   amount: 5000000,
+                            //   width: cardWidth,
+                            // )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        SizedBox(
+                          height: 55,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: BlocBuilder<UserBloc, UserState>(
+                            builder: (_, userState) => ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  disabledBackgroundColor: Color(0xFFE4E4E4),
+                                  backgroundColor: kBlueColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Text(
+                                  "Isi Nusacash",
+                                  style: whiteTextFont.copyWith(
+                                      fontSize: 16,
+                                      color: (selectedAmount > 0)
+                                          ? Colors.white
+                                          : Color(0xFFBEBEBE)),
+                                ),
+                                onPressed: (selectedAmount > 0)
+                                    ? () {
+                                        // context.read<PageBloc>().add(GoToSuccessPage(
+                                        //     NusacationTransaction(
+                                        //         userID: (userState as UserLoaded)
+                                        //             .user
+                                        //             .id,
+                                        //         title: "Top Up Wallet",
+                                        //         amount: selectedAmount,
+                                        //         subtitle:
+                                        //             "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+                                        //         time: DateTime.now())));
+                                      }
+                                    : null),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     double cardWidth =
@@ -70,178 +226,7 @@ class _MainPageState extends State<MainPage> {
                     child: Image.asset("assets/ic-topup.png"),
                   ),
                   onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            insetPadding: EdgeInsets.only(top: 120),
-                            title: Center(
-                              child: Text('Isi Ulang',
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 20,
-                                    fontWeight: medium,
-                                  )),
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(30),
-                                topLeft: Radius.circular(30),
-                              ),
-                            ),
-                            content: Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    child: Column(
-                                      children: <Widget>[
-                                        TextField(
-                                          onChanged: (text) {
-                                            String temp = '';
-    
-                                            for (int i = 0;
-                                                i < text.length;
-                                                i++) {
-                                              temp +=
-                                                  text.isDigit(i) ? text[i] : '';
-                                            }
-    
-                                            setState(() {
-                                              selectedAmount =
-                                                  int.tryParse(temp) ?? 0;
-                                            });
-    
-                                            amountController.text =
-                                                NumberFormat.currency(
-                                                        locale: 'id_ID',
-                                                        symbol: 'Rp. ',
-                                                        decimalDigits: 0)
-                                                    .format(selectedAmount);
-    
-                                            amountController.selection =
-                                                TextSelection.fromPosition(
-                                                    TextPosition(
-                                                        offset: amountController
-                                                            .text.length));
-                                          },
-                                          controller: amountController,
-                                          decoration: InputDecoration(
-                                            labelStyle: greyTextFont,
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            labelText: "Jumlah",
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                                top: 20, bottom: 14),
-                                            child: Text("Pilih Cepat",
-                                                style: blackTextFont),
-                                          ),
-                                        ),
-                                        Wrap(
-                                          spacing: 20,
-                                          runSpacing: 14,
-                                          children: <Widget>[
-                                            makeMoneyCard(
-                                              amount: 50000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 100000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 150000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 200000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 250000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 500000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 1000000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 2500000,
-                                              width: cardWidth,
-                                            ),
-                                            makeMoneyCard(
-                                              amount: 5000000,
-                                              width: cardWidth,
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 50,
-                                        ),
-                                        SizedBox(
-                                          height: 55,
-                                          width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.8,
-                                          child: BlocBuilder<UserBloc, UserState>(
-                                            builder: (_, userState) =>
-                                                ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                elevation: 0,
-                                                disabledBackgroundColor:
-                                                    Color(0xFFE4E4E4),
-                                                backgroundColor: kBlueColor,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                ),
-                                              ),
-    
-                                              child: Text(
-                                                "Isi Nusacash",
-                                                style: whiteTextFont.copyWith(
-                                                    fontSize: 16,
-                                                    color: (selectedAmount > 0)
-                                                        ? Colors.white
-                                                        : Color(0xFFBEBEBE)),
-                                              ),
-                                              
-                                              onPressed: (selectedAmount > 0)
-                                                  ? () {
-                                                      // context.read<PageBloc>().add(GoToSuccessPage(
-                                                      //     NusacationTransaction(
-                                                      //         userID: (userState as UserLoaded)
-                                                      //             .user
-                                                      //             .id,
-                                                      //         title: "Top Up Wallet",
-                                                      //         amount: selectedAmount,
-                                                      //         subtitle:
-                                                      //             "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                                      //         time: DateTime.now())));
-                                                    }
-                                                  : null),
-                                            ),
-                                          ),
-                                        
-                                      ],
-                                    ),
-                                  ),
-                                  
-                                ],
-                              ),
-                            ),
-                          );
-                        });
+                    context.read<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
                   },
                 ),
               ),
@@ -252,29 +237,6 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  MoneyCard makeMoneyCard({int? amount, double? width}) {
-    return MoneyCard(
-      amount: amount!,
-      width: width!,
-      isSelected: amount == selectedAmount,
-      onTap: () {
-        setState(() {
-          if (selectedAmount != amount) {
-            selectedAmount = amount;
-          } else {
-            selectedAmount = 0;
-          }
-
-          amountController.text = NumberFormat.currency(
-                  locale: 'id_ID', decimalDigits: 0, symbol: 'Rp. ')
-              .format(selectedAmount);
-
-          amountController.selection = TextSelection.fromPosition(
-              TextPosition(offset: amountController.text.length));
-        });
-      },
-    );
-  }
 
   Widget createCustomBottomNavBar() => Align(
         alignment: Alignment.bottomCenter,
