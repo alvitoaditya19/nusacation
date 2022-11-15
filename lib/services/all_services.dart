@@ -147,4 +147,40 @@ class DestinationServices {
       throw Exception(e);
     }
   }
+
+  Future<List<DestinationModel>> getBookingLain() async {
+    try {
+      QuerySnapshot result = await _bookingReference.get();
+
+      List<DestinationModel> hotels = result.docs.map(
+        (e) {
+          return DestinationModel.fromJson(e.data() as Map<String, dynamic>);
+        },
+      ).toList();
+      print(hotels);
+      return hotels;
+    } catch (e) {
+      print(e);
+
+      throw Exception(e);
+    }
+  }
+
+  Future<List<DestinationModel>> getDestBooking() async {
+    try {
+      QuerySnapshot result = await _bookingReference.get();
+
+      List<DestinationModel> hotels = result.docs.map(
+        (e) {
+          return DestinationModel.fromJson(e.data() as Map<String, dynamic>);
+        },
+      ).toList();
+      print(hotels);
+      return hotels;
+    } catch (e) {
+      print(e);
+
+      throw Exception(e);
+    }
+  }
 }
