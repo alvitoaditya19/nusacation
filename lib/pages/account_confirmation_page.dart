@@ -20,7 +20,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
         context
             .read<PageBloc>()
             .add(GoToRegistrationPage(widget.registrationData));
-        return true;
+        return false;
       },
       child: Scaffold(
         body: Container(
@@ -53,7 +53,8 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                         image: DecorationImage(
                             image:
                                 (widget.registrationData.profileImage == null)
-                                    ? AssetImage("assets/user_pic.png") as ImageProvider
+                                    ? AssetImage("assets/user_pic.png")
+                                        as ImageProvider
                                     : FileImage(
                                         widget.registrationData.profileImage!),
                             fit: BoxFit.cover)),
@@ -87,12 +88,11 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           width: 250,
                           height: 55,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-        backgroundColor: kBlueColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(17)),
-                            ),
-                      
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: kBlueColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(17)),
+                              ),
                               child: Text(
                                 "Konfirmasi",
                                 style: GoogleFonts.poppins(

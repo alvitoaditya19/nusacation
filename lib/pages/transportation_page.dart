@@ -16,7 +16,8 @@ class TransportaionPage extends StatelessWidget {
         child: BlocBuilder<TransportationBloc, TransportationState>(
           builder: (_, hotelState) {
             if (hotelState is TransportationLoaded) {
-              List<DestinationModel>? transportation= hotelState.transportation;
+              List<DestinationModel>? transportation =
+                  hotelState.transportation;
 
               return ListView.builder(
                 shrinkWrap: true,
@@ -38,57 +39,64 @@ class TransportaionPage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-        backgroundColor: kBackgroundColor,
-        body: SafeArea(
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Container(
-                  margin: EdgeInsets.only(
-                      left: defaultMargin, right: defaultMargin),
-                  child: Column(children: [
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Center(
-                      child: Text(
-                        'Transportation',
-                        style: blackTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: medium,
+    return WillPopScope(
+      onWillPop: () async {
+        context.read<PageBloc>().add(GoToMainPage());
+
+        return false;
+      },
+      child: Scaffold(
+          backgroundColor: kBackgroundColor,
+          body: SafeArea(
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        left: defaultMargin, right: defaultMargin),
+                    child: Column(children: [
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Center(
+                        child: Text(
+                          'Transportasi',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 20,
+                            fontWeight: medium,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    vacationSpot(),
-                    // DestinationCard()
-                  ]),
-                ),
-              ),
-              SafeArea(
-                child: Container(
-                  padding:
-                      EdgeInsets.only(left: 8, top: 12, bottom: 12, right: 12),
-                  margin: EdgeInsets.only(left: defaultMargin, top: 14),
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: kWhiteColor),
-                  child: InkWell(
-                    onTap: () {
-                      context.read<PageBloc>().add(GoToMainPage());
-                    },
-                    child: Image.asset(
-                      'assets/btn-back.png',
-                      width: 28,
-                      height: 28,
-                    ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      vacationSpot(),
+                      // DestinationCard()
+                    ]),
                   ),
                 ),
-              )
-            ],
-          ),
-        ));
+                SafeArea(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: 8, top: 12, bottom: 12, right: 12),
+                    margin: EdgeInsets.only(left: defaultMargin, top: 14),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: kWhiteColor),
+                    child: InkWell(
+                      onTap: () {
+                        context.read<PageBloc>().add(GoToMainPage());
+                      },
+                      child: Image.asset(
+                        'assets/btn-back.png',
+                        width: 28,
+                        height: 28,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )),
+    );
   }
 }

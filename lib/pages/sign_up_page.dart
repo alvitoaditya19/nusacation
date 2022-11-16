@@ -405,7 +405,7 @@ class _SignUpPageState extends State<SignUpPage> {
       onWillPop: () async {
         context.read<PageBloc>().add(GoToSignInPage());
 
-        return true;
+        return false;
       },
       child: Scaffold(
         backgroundColor: kBackgroundColor,

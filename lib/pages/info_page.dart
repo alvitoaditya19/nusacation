@@ -38,61 +38,68 @@ class InfoPage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-        backgroundColor: kBackgroundColor,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      left: defaultMargin, right: defaultMargin),
-                  child: Column(children: [
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Informasi',
-                          style: blackTextStyle.copyWith(
-                            fontSize: 20,
-                            fontWeight: medium,
+    return WillPopScope(
+      onWillPop: () async {
+        context.read<PageBloc>().add(GoToMainPage());
+
+        return true;
+      },
+      child: Scaffold(
+          backgroundColor: kBackgroundColor,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: defaultMargin, right: defaultMargin),
+                    child: Column(children: [
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Informasi',
+                            style: blackTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: medium,
+                            ),
                           ),
+                          SizedBox()
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      infoWidget()
+                      // DestinationCard()
+                    ]),
+                  ),
+                  SafeArea(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          left: 8, top: 12, bottom: 12, right: 12),
+                      margin: EdgeInsets.only(left: defaultMargin, top: 14),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: kWhiteColor),
+                      child: InkWell(
+                        onTap: () {
+                          context.read<PageBloc>().add(GoToMainPage());
+                        },
+                        child: Image.asset(
+                          'assets/btn-back.png',
+                          width: 28,
+                          height: 28,
                         ),
-                        SizedBox()
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    infoWidget()
-                    // DestinationCard()
-                  ]),
-                ),
-                SafeArea(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        left: 8, top: 12, bottom: 12, right: 12),
-                    margin: EdgeInsets.only(left: defaultMargin, top: 14),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: kWhiteColor),
-                    child: InkWell(
-                      onTap: () {
-                        context.read<PageBloc>().add(GoToMainPage());
-                      },
-                      child: Image.asset(
-                        'assets/btn-back.png',
-                        width: 28,
-                        height: 28,
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

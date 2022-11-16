@@ -34,7 +34,7 @@ class _BookingPageState extends State<BookingPage> {
         onWillPop: () async {
           context.read<PageBloc>().add(GoToDetailPaketPage(widget.booking!));
 
-          return true;
+          return false;
         },
         child: Scaffold(
             backgroundColor: kBackgroundColor,
@@ -61,7 +61,8 @@ class _BookingPageState extends State<BookingPage> {
                 Container(
                     margin: EdgeInsets.only(
                       top: 10,
-                       left: defaultMargin, right: defaultMargin,
+                      left: defaultMargin,
+                      right: defaultMargin,
                     ),
                     child: BlocBuilder<UserBloc, UserState>(
                         builder: (_, userState) {
@@ -94,8 +95,9 @@ class _BookingPageState extends State<BookingPage> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 10,),
-
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Row(
                                     children: <Widget>[
                                       Stack(
@@ -231,6 +233,7 @@ class _BookingPageState extends State<BookingPage> {
                                                   fontWeight: medium,
                                                   fontSize: 18,
                                                 ),
+                                                maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                               ),
                                               SizedBox(
@@ -242,6 +245,8 @@ class _BookingPageState extends State<BookingPage> {
                                                   fontWeight: light,
                                                   fontSize: 14,
                                                 ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ],
                                           ),

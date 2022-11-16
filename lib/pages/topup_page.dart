@@ -24,7 +24,7 @@ class _TopUpPageState extends State<TopUpPage> {
       onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
 
-        return true;
+        return false;
       },
       child: Scaffold(
         body: ListView(

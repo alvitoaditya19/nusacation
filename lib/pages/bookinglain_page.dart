@@ -36,7 +36,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
               .read<PageBloc>()
               .add(GoToDetailHotelPage(widget.bookinglain!));
 
-          return true;
+          return false;
         },
         child: Scaffold(
             backgroundColor: kBackgroundColor,
@@ -233,6 +233,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                                   fontWeight: medium,
                                                   fontSize: 18,
                                                 ),
+                                                maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                               ),
                                               SizedBox(
@@ -244,6 +245,8 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                                   fontWeight: light,
                                                   fontSize: 14,
                                                 ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ],
                                           ),

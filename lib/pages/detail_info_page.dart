@@ -11,7 +11,7 @@ class DetailInfoPage extends StatelessWidget {
       onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
 
-        return true;
+        return false;
       },
       child: Scaffold(
         backgroundColor: kBackgroundColor,

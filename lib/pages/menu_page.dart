@@ -107,6 +107,8 @@ class _MenuPageState extends State<MenuPage> {
                                       symbol: "Rp. ")
                                   .format(userState.user.balance ?? "0") + ' Nusacash',
                               style: grey3TextStyle.copyWith(fontSize: 14),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(
                               height: 6,
@@ -411,7 +413,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Penginapan',
+                          'Resort',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -443,7 +445,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Kendaraan',
+                          'Sarana',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
