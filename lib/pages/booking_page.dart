@@ -291,9 +291,7 @@ class _BookingPageState extends State<BookingPage> {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(50),
-                                                          border: Border.all(
-                                                              color:
-                                                                  kBlueColor)),
+                                                         ),
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment

@@ -24,7 +24,7 @@ class _SignInPageState extends State<SignInPage> {
           top: defaultMargin,
         ),
         child: Text(
-          'Selamat Datang kembali,\nPenjelajah!',
+          'Bersiap untuk Berlibur,\nke Tempat Impian',
           style: blackTextStyle.copyWith(
             fontSize: 24,
             fontWeight: semiBold,

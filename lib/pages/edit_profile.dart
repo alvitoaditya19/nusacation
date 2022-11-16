@@ -238,7 +238,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8)),
                                     disabledBackgroundColor: Color(0xFFE4E4E4),
-                                    backgroundColor: Color(0xFF3E9D9D),
+                                    backgroundColor: kBlueColor,
                                   ),
                                   child: Text(
                                     "Perbarui",

@@ -291,9 +291,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(50),
-                                                          border: Border.all(
-                                                              color:
-                                                                  kBlueColor)),
+                                                          ),
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment

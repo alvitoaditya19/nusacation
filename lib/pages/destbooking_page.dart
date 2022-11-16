@@ -298,9 +298,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(50),
-                                                          border: Border.all(
-                                                              color:
-                                                                  kBlueColor)),
+                                                        ),
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment

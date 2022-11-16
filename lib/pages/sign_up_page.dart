@@ -33,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         child: Center(
           child: Text(
-            'Daftarkan Dirimu, \nJadilah Penjelajah!',
+            'Daftarkan Dirimu, \nUntuk Berlibur',
             style: blackTextStyle.copyWith(
               fontSize: 24,
               fontWeight: semiBold,
