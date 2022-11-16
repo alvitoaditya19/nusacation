@@ -497,7 +497,7 @@ class DetailHotelPage extends StatelessWidget {
                               duration: Duration(milliseconds: 700),
                               backgroundColor: kBlueColor,
                               content: Text(
-                                'Has been added to the Wishlist',
+                                'Berhasil Ditambah ke Favorit',
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -508,7 +508,7 @@ class DetailHotelPage extends StatelessWidget {
                               duration: Duration(milliseconds: 700),
                               backgroundColor: kRedColor,
                               content: Text(
-                                'Has been removed from the Wishlist',
+                                'Berhasil Dihapus dari Favorit',
                                 textAlign: TextAlign.center,
                               ),
                             ),

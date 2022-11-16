@@ -82,8 +82,8 @@ class AkomTicketList extends StatelessWidget {
                     right: 20.0, left: 20, top: 10, bottom: 10),
                 child: ExpansionTileCard(
                   borderRadius: BorderRadius.circular(10),
-                  baseColor: Colors.cyan[50],
-                  expandedColor: Color.fromARGB(255, 237, 229, 229),
+                  baseColor: kWhiteColor,
+                  expandedColor: Color.fromARGB(255, 243, 254, 255),
                   key: key,
                   leading: CircleAvatar(
                     radius: 30.0,
@@ -91,12 +91,30 @@ class AkomTicketList extends StatelessWidget {
                         NetworkImage(akomTicket[index]["Gambar"].toString()),
                     backgroundColor: Colors.transparent,
                   ),
-                  title: Text(akomTicket[index]["Place"].toString()),
-                  subtitle: Text("TIKET WISATA NON PAKET"),
+                  title: Text(
+                    akomTicket[index]["Place"].toString(),
+                    style: blackTextStyle.copyWith(
+                      fontWeight: medium,
+                      fontSize: 14,
+                    ),
+                  ),
+                  subtitle: Container(
+                    margin: EdgeInsets.only(top: 4),
+                    child: Text(
+                      'Jadwal : ' + akomTicket[index]["Date"].toString(),
+                      style: blackTextStyle.copyWith(
+                        fontWeight: medium,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
                   children: <Widget>[
                     Divider(
                       thickness: 1.0,
                       height: 1.0,
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -105,16 +123,39 @@ class AkomTicketList extends StatelessWidget {
                           horizontal: 16.0,
                           vertical: 8.0,
                         ),
-                        child: Text(
-                          "Jadwal Kunjungan : " +
-                              akomTicket[index]["Date"].toString() +
-                              "\nJumlah Pengunjung : " +
-                              akomTicket[index]["Traveler"].toString() +
-                              "\nTotal Harga : Rp. " +
-                              akomTicket[index]["Price"].toString() +
-                              "\nMetode Pembayaran : " +
-                              akomTicket[index]["Payment"].toString(),
-                          style: blackTextStyle,
+                        child: Column(
+                          children: [
+                            Row(children: [
+                              Icon(Icons.check_circle_outline),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text('Tiket Ini berlaku untuk ' +
+                                  akomTicket[index]["Traveler"].toString() + ' Pengunjung'),
+                            ]),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                    'Jangan berikan QR Code ke sembarang orang!')
+                              ],
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                    'Pastikan datang tepat waktu!')
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -136,8 +177,8 @@ class AkomTicketList extends StatelessWidget {
                                           child: Text(
                                               "Scan QR Code dibawah Ini",
                                               style: blackTextStyle.copyWith(
-                                                fontWeight: semiBold,
-                                              )),
+                                                  fontWeight: semiBold,
+                                                  fontSize: 16)),
                                         ),
                                         children: [
                                           Image.asset('assets/qrcode.png')
@@ -152,7 +193,22 @@ class AkomTicketList extends StatelessWidget {
                                   "https://wa.me/+62822-9714-5285?text=Halo,%20Saya%20Ingin%20Konfirmasi%20Pemesanan%20Saya");
                             },
                             child: Icon(Icons.chat_outlined),
-                          )
+                          ),
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: kBlueColor,
+                              ),
+                              height: 40,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                'Rp. ' + akomTicket[index]["Price"].toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 243, 254, 255),
+                                ),
+                              )))
                         ])
                   ],
                 ),

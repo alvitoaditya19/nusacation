@@ -44,7 +44,7 @@ class SuccessTopUpPage extends StatelessWidget {
                             height: 16,
                           ),
                           Text(
-                            "You have successfully\ntop up the wallet",
+                            "Kamu Berhasil Isi Ulang\nNusacash!",
                             textAlign: TextAlign.center,
                             style: blackTextFont.copyWith(
                                 fontSize: 16, fontWeight: FontWeight.w300),
@@ -61,7 +61,7 @@ class SuccessTopUpPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8)),
                                 ),
                                 child: Text(
-                                  'Back to Home',
+                                  'Menu Utama',
                                   style: whiteTextFont.copyWith(fontSize: 16),
                                 ),
                                 onPressed: () {

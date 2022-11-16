@@ -32,7 +32,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.read<PageBloc>().add(GoToMainPage());
+          context.read<PageBloc>().add(GoToDetailDestinationPage(widget.bookinglain!));
 
           return true;
         },
@@ -42,7 +42,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () {
-                  context.read<PageBloc>().add(GoToMainPage());
+                  context.read<PageBloc>().add(GoToDetailDestinationPage(widget.bookinglain!));
                 },
               ),
               title: Text("Pesanan Kamu"),
@@ -128,7 +128,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                             children: <Widget>[
                                               SizedBox(
                                                 child: Text(
-                                                  r'$ ' +
+                                                  r'Rp. ' +
                                                       userState.user.balance
                                                           .toString(),
                                                   style:
@@ -386,7 +386,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                             ),
                                             RowDetails(
                                               det1: 'Harga (per Tiket)',
-                                              det2: r"$ " +
+                                              det2: r"Rp. " +
                                                   widget.bookinglain!.price!
                                                       .toString(),
                                               clr: kBlackColor,
@@ -394,7 +394,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                             ),
                                             RowDetails(
                                               det1: 'Total Harga',
-                                              det2: r"$ " +
+                                              det2: r"Rp. " +
                                                   "${jml * widget.bookinglain!.price!}",
                                               clr: kBlueColor,
                                               weight: semiBold,
@@ -665,7 +665,7 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                             Alert(
                                               context: context,
                                               type: AlertType.error,
-                                              title: "PAYMENT FAILED",
+                                              title: "PEMESANAN GAGAL",
                                               style: AlertStyle(
                                                 titleStyle:
                                                     blackTextStyle.copyWith(
@@ -681,6 +681,19 @@ class _BookingLainPageState extends State<BookingLainPage> {
                                                   width: 120,
                                                   child: Text(
                                                     "Mengerti",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                DialogButton(
+                                                  onPressed: () async {
+                                                    context.read<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
+                                                    Navigator.pop(context);
+                                                  },
+                                                  width: 120,
+                                                  child: Text(
+                                                    "Isi Ulang",
                                                     style: GoogleFonts.poppins(
                                                         color: Colors.white,
                                                         fontSize: 20),

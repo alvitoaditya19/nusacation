@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class TopUpPage extends StatefulWidget {
-    final PageEvent pageEvent;
+  final PageEvent pageEvent;
 
   TopUpPage(this.pageEvent);
   @override
@@ -42,9 +42,20 @@ class _TopUpPageState extends State<TopUpPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "Top Up",
-                        style: blackTextFont.copyWith(fontSize: 20),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back, color: Colors.black),
+                            onPressed: () {
+                              context.read<PageBloc>().add(GoToMainPage());
+                            },
+                          ),
+                          SizedBox(width: MediaQuery.of(context).size.width/8),
+                          Text(
+                            "Isi Ulang Nusacash",
+                            style: blackTextFont.copyWith(fontSize: 20),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 30,
@@ -76,15 +87,14 @@ class _TopUpPageState extends State<TopUpPage> {
                           labelStyle: greyTextFont,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          labelText: "Amount",
+                          labelText: "Jumlah",
                         ),
                       ),
                       Align(
-                        alignment: Alignment.topLeft,
+                        alignment: Alignment.center,
                         child: Container(
                           margin: EdgeInsets.only(top: 20, bottom: 14),
-                          child:
-                              Text("Choose by Template", style: blackTextFont),
+                          child: Text("Pilihan Cepat", style: blackTextFont),
                         ),
                       ),
                       Wrap(
@@ -137,44 +147,44 @@ class _TopUpPageState extends State<TopUpPage> {
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: BlocBuilder<UserBloc, UserState>(
                           builder: (_, userState) => ElevatedButton(
-
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              disabledBackgroundColor: Color(0xFFE4E4E4),
-                              backgroundColor: (selectedAmount > 0) ? kBlueColor : Color(0xffF4F4F4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                disabledBackgroundColor: Color(0xFFE4E4E4),
+                                backgroundColor: (selectedAmount > 0)
+                                    ? kBlueColor
+                                    : Color(0xffF4F4F4),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
-                            ),
-
-                            child: Text(
-                              "Top Up My Wallet",
-                              style: whiteTextFont.copyWith(
-                                  fontSize: 16,
-                                  color: (selectedAmount > 0)
-                                      ? Colors.white
-                                      : kBlackColor),
-                            ),
-                            // onPressed: () {},
-                            onPressed: (selectedAmount > 0)
-                            
-                                ? () {
-                                    context.read<PageBloc>().add(GoToSuccessTopUpPage(
-                                        null,
-                                        NusacationTransaction(
-                                            userID: (userState as UserLoaded)
-                                                .user
-                                                .id,
-                                            title: "Top Up Wallet",
-                                            amount: selectedAmount,
-                                            subtitle:
-                                                "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                            time: DateTime.now())));
-                                  }
-                                : null),
-                          ),
+                              child: Text(
+                                "Top Up My Wallet",
+                                style: whiteTextFont.copyWith(
+                                    fontSize: 16,
+                                    color: (selectedAmount > 0)
+                                        ? Colors.white
+                                        : kBlackColor),
+                              ),
+                              // onPressed: () {},
+                              onPressed: (selectedAmount > 0)
+                                  ? () {
+                                      context.read<PageBloc>().add(
+                                          GoToSuccessTopUpPage(
+                                              null,
+                                              NusacationTransaction(
+                                                  userID:
+                                                      (userState as UserLoaded)
+                                                          .user
+                                                          .id,
+                                                  title: "Top Up Wallet",
+                                                  amount: selectedAmount,
+                                                  subtitle:
+                                                      "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+                                                  time: DateTime.now())));
+                                    }
+                                  : null),
                         ),
-                      
+                      ),
                       SizedBox(
                         height: 100,
                       )

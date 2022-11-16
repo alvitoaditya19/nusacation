@@ -554,7 +554,7 @@
 //                         Alert(
 //                           context: context,
 //                           type: AlertType.error,
-//                           title: "PAYMENT FAILED",
+//                           title: "PEMESANAN GAGAL",
 //                           style: AlertStyle(
 //                             titleStyle: blackTextStyle.copyWith(
 //                               fontWeight: semiBold,

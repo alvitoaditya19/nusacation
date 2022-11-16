@@ -32,7 +32,7 @@ class _BookingPageState extends State<BookingPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.read<PageBloc>().add(GoToMainPage());
+          context.read<PageBloc>().add(GoToDetailPaketPage(widget.booking!));
 
           return true;
         },
@@ -42,7 +42,9 @@ class _BookingPageState extends State<BookingPage> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () {
-                  context.read<PageBloc>().add(GoToMainPage());
+                  context
+                      .read<PageBloc>()
+                      .add(GoToDetailPaketPage(widget.booking!));
                 },
               ),
               title: Text("Pesanan Kamu"),
@@ -128,7 +130,7 @@ class _BookingPageState extends State<BookingPage> {
                                             children: <Widget>[
                                               SizedBox(
                                                 child: Text(
-                                                  r'$ ' +
+                                                  r'Rp. ' +
                                                       userState.user.balance
                                                           .toString(),
                                                   style:
@@ -286,12 +288,12 @@ class _BookingPageState extends State<BookingPage> {
                                                       width: 120,
                                                       height: 30,
                                                       decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .transparent,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(50),
-                                                         ),
+                                                        color:
+                                                            Colors.transparent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                      ),
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -366,7 +368,8 @@ class _BookingPageState extends State<BookingPage> {
                                               child: RowDetails(
                                                 det1: 'Tanggal',
                                                 det2: time.toString(),
-                                                clr: (_dateTime != 'Pilih Tanggal')
+                                                clr: (_dateTime !=
+                                                        'Pilih Tanggal')
                                                     ? kRedColor
                                                     : kBlackColor,
                                                 weight: semiBold,
@@ -386,7 +389,7 @@ class _BookingPageState extends State<BookingPage> {
                                             ),
                                             RowDetails(
                                               det1: 'Harga (per Tiket)',
-                                              det2: r"$ " +
+                                              det2: r"Rp. " +
                                                   widget.booking!.price!
                                                       .toString(),
                                               clr: kBlackColor,
@@ -394,7 +397,7 @@ class _BookingPageState extends State<BookingPage> {
                                             ),
                                             RowDetails(
                                               det1: 'Total Harga',
-                                              det2: r"$ " +
+                                              det2: r"Rp. " +
                                                   "${jml * widget.booking!.price!}",
                                               clr: kBlueColor,
                                               weight: semiBold,
@@ -531,15 +534,15 @@ class _BookingPageState extends State<BookingPage> {
                                     ),
                                     SizedBox(
                                       height: 54,
-                                      width: MediaQuery.of(context).size.width - 50,
+                                      width: MediaQuery.of(context).size.width -
+                                          50,
                                       child: TextButton(
                                         onPressed: () {
                                           if ((userState.user.balance! >=
                                                   (jml *
                                                       widget
                                                           .booking!.price!)) &&
-                                              time !=
-                                                  'Pilih Tanggal' &&
+                                              time != 'Pilih Tanggal' &&
                                               payment == 'My Nusacash') {
                                             Alert(
                                               context: context,
@@ -561,7 +564,10 @@ class _BookingPageState extends State<BookingPage> {
                                                 ),
                                                 DialogButton(
                                                   onPressed: () {
-                                                    context.read<PageBloc>().add(GoToSuccessPage(userState.user));
+                                                    context
+                                                        .read<PageBloc>()
+                                                        .add(GoToSuccessPage(
+                                                            userState.user));
                                                     FirebaseFirestore.instance
                                                         .runTransaction(
                                                             (transaction) async {
@@ -572,7 +578,8 @@ class _BookingPageState extends State<BookingPage> {
                                                               .collection(
                                                                   "dataTiket");
                                                       await reference.add({
-                                                        "user_id": userState.user.id,
+                                                        "user_id":
+                                                            userState.user.id,
                                                         "Place": widget
                                                             .booking!.name!,
                                                         "Date": time,
@@ -594,8 +601,7 @@ class _BookingPageState extends State<BookingPage> {
                                                 ),
                                               ],
                                             ).show();
-                                          } else if (time !=
-                                                  'Pilih Tanggal' &&
+                                          } else if (time != 'Pilih Tanggal' &&
                                               payment != 'My Nusacash' &&
                                               payment !=
                                                   'Pilih Metode\nPembayaran') {
@@ -626,7 +632,10 @@ class _BookingPageState extends State<BookingPage> {
                                                 ),
                                                 DialogButton(
                                                   onPressed: () {
-                                                    context.read<PageBloc>().add(GoToSuccessPage(userState.user));
+                                                    context
+                                                        .read<PageBloc>()
+                                                        .add(GoToSuccessPage(
+                                                            userState.user));
                                                     FirebaseFirestore.instance
                                                         .runTransaction(
                                                             (transaction) async {
@@ -637,7 +646,8 @@ class _BookingPageState extends State<BookingPage> {
                                                               .collection(
                                                                   "dataTiket");
                                                       await reference.add({
-                                                        "user_id": userState.user.id,
+                                                        "user_id":
+                                                            userState.user.id,
                                                         "Place": widget
                                                             .booking!.name!,
                                                         "Date": time,
@@ -645,7 +655,8 @@ class _BookingPageState extends State<BookingPage> {
                                                             "${jml * widget.booking!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
-                                                        "City": widget.booking!.city
+                                                        "City":
+                                                            widget.booking!.city
                                                       });
                                                     });
                                                     Navigator.pop(context);
@@ -664,7 +675,7 @@ class _BookingPageState extends State<BookingPage> {
                                             Alert(
                                               context: context,
                                               type: AlertType.error,
-                                              title: "PAYMENT FAILED",
+                                              title: "PEMESANAN GAGAL",
                                               style: AlertStyle(
                                                 titleStyle:
                                                     blackTextStyle.copyWith(
@@ -676,10 +687,27 @@ class _BookingPageState extends State<BookingPage> {
                                                   "Periksa Tanggal atau Nusacash kamu!",
                                               buttons: [
                                                 DialogButton(
-                                                  onPressed: () => Navigator.pop(context),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
                                                   width: 120,
                                                   child: Text(
                                                     "Mengerti",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                DialogButton(
+                                                  onPressed: () async {
+                                                    context
+                                                        .read<PageBloc>()
+                                                        .add(GoToTopUpPage(
+                                                            GoToMainPage()));
+                                                    Navigator.pop(context);
+                                                  },
+                                                  width: 120,
+                                                  child: Text(
+                                                    "Isi Ulang",
                                                     style: GoogleFonts.poppins(
                                                         color: Colors.white,
                                                         fontSize: 20),

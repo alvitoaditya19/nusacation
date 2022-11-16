@@ -80,7 +80,7 @@ class DestTicketList extends StatelessWidget {
                 child: ExpansionTileCard(
                   borderRadius: BorderRadius.circular(10),
                   baseColor: kWhiteColor,
-                  expandedColor: Color(0xffC3F8FF),
+                  expandedColor: Color.fromARGB(255, 243, 254, 255),
                   key: key,
                   leading: CircleAvatar(
                     radius: 30.0,
@@ -98,7 +98,7 @@ class DestTicketList extends StatelessWidget {
                   subtitle: Container(
                     margin: EdgeInsets.only(top: 4),
                     child: Text(
-                      "Tiket Wisata Non Paket",
+                      'Jadwal : ' + destTicket[index]["Date"].toString(),
                       style: blackTextStyle.copyWith(
                         fontWeight: medium,
                         fontSize: 14,
@@ -110,6 +110,9 @@ class DestTicketList extends StatelessWidget {
                       thickness: 1.0,
                       height: 1.0,
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -117,16 +120,39 @@ class DestTicketList extends StatelessWidget {
                           horizontal: 16.0,
                           vertical: 8.0,
                         ),
-                        child: Text(
-                          "Jadwal Kunjungan : " +
-                              destTicket[index]["Date"].toString() +
-                              "\nJumlah Pengunjung : " +
-                              destTicket[index]["Traveler"].toString() +
-                              "\nTotal Harga : Rp. " +
-                              destTicket[index]["Price"].toString() +
-                              "\nMetode Pembayaran : " +
-                              destTicket[index]["Payment"].toString(),
-                          style: blackTextStyle,
+                        child: Column(
+                          children: [
+                            Row(children: [
+                              Icon(Icons.check_circle_outline),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text('Tiket Ini berlaku untuk ' +
+                                  destTicket[index]["Traveler"].toString() + ' Pengunjung'),
+                            ]),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                    'Jangan berikan QR Code ke sembarang orang!')
+                              ],
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: [
+                                Icon(Icons.check_circle_outline),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                    'Pastikan datang tepat waktu!')
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -158,6 +184,35 @@ class DestTicketList extends StatelessWidget {
                             },
                             child: Icon(Icons.qr_code_scanner),
                           ),
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: kBlueColor,
+                              ),
+                              height: 40,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                destTicket[index]["Payment"].toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 243, 254, 255)),
+                              ))),
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: kBlueColor,
+                              ),
+                              height: 40,
+                              width: 150,
+                              child: Center(
+                                  child: Text(
+                                'Rp. ' + destTicket[index]["Price"].toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 243, 254, 255),
+                                ),
+                              )))
                         ])
                   ],
                 ),

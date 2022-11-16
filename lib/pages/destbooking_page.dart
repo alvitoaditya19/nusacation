@@ -39,7 +39,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.read<PageBloc>().add(GoToMainPage());
+          context.read<PageBloc>().add(GoToDetailDestinationPage(widget.destBooking!));
 
           return true;
         },
@@ -49,7 +49,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () {
-                  context.read<PageBloc>().add(GoToMainPage());
+                  context.read<PageBloc>().add(GoToDetailDestinationPage(widget.destBooking!));
                 },
               ),
               title: Text("Pesanan Kamu"),
@@ -135,7 +135,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                             children: <Widget>[
                                               SizedBox(
                                                 child: Text(
-                                                  r'$ ' +
+                                                  r'Rp. ' +
                                                       userState.user.balance
                                                           .toString(),
                                                   style:
@@ -218,7 +218,8 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                         image: DecorationImage(
                                                             fit: BoxFit.cover,
                                                             image: NetworkImage(
-                                                                widget.destBooking!
+                                                                widget
+                                                                    .destBooking!
                                                                     .imageUrl!)))),
                                                 SizedBox(
                                                   width: 10,
@@ -230,7 +231,8 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        widget.destBooking!.name!,
+                                                        widget
+                                                            .destBooking!.name!,
                                                         style: blackTextStyle
                                                             .copyWith(
                                                           fontWeight: medium,
@@ -243,8 +245,8 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                         height: 3,
                                                       ),
                                                       Text(
-                                                        widget
-                                                            .destBooking!.location!,
+                                                        widget.destBooking!
+                                                            .location!,
                                                         style: greyTextStyle
                                                             .copyWith(
                                                           fontWeight: light,
@@ -293,12 +295,12 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                       width: 120,
                                                       height: 30,
                                                       decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .transparent,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(50),
-                                                        ),
+                                                        color:
+                                                            Colors.transparent,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                      ),
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -373,7 +375,8 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                               child: RowDetails(
                                                 det1: 'Tanggal',
                                                 det2: time.toString(),
-                                                clr: (_dateTime != 'Pilih Tanggal')
+                                                clr: (_dateTime !=
+                                                        'Pilih Tanggal')
                                                     ? kRedColor
                                                     : kBlackColor,
                                                 weight: semiBold,
@@ -393,7 +396,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                             ),
                                             RowDetails(
                                               det1: 'Harga (per Tiket)',
-                                              det2: r"$ " +
+                                              det2: r"Rp. " +
                                                   widget.destBooking!.price!
                                                       .toString(),
                                               clr: kBlackColor,
@@ -401,7 +404,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                             ),
                                             RowDetails(
                                               det1: 'Total Harga',
-                                              det2: r"$ " +
+                                              det2: r"Rp. " +
                                                   "${jml * widget.destBooking!.price!}",
                                               clr: kBlueColor,
                                               weight: semiBold,
@@ -538,15 +541,15 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                     ),
                                     SizedBox(
                                       height: 54,
-                                      width: MediaQuery.of(context).size.width - 50,
+                                      width: MediaQuery.of(context).size.width -
+                                          50,
                                       child: TextButton(
                                         onPressed: () {
                                           if ((userState.user.balance! >=
                                                   (jml *
-                                                      widget
-                                                          .destBooking!.price!)) &&
-                                              time !=
-                                                  'Pilih Tanggal' &&
+                                                      widget.destBooking!
+                                                          .price!)) &&
+                                              time != 'Pilih Tanggal' &&
                                               payment == 'My Nusacash') {
                                             Alert(
                                               context: context,
@@ -568,7 +571,10 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                 ),
                                                 DialogButton(
                                                   onPressed: () {
-                                                    context.read<PageBloc>().add(GoToSuccessPage(userState.user));
+                                                    context
+                                                        .read<PageBloc>()
+                                                        .add(GoToSuccessPage(
+                                                            userState.user));
                                                     FirebaseFirestore.instance
                                                         .runTransaction(
                                                             (transaction) async {
@@ -579,7 +585,8 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                               .collection(
                                                                   "dataTiketDestinasi");
                                                       await reference.add({
-                                                        "user_id": userState.user.id,
+                                                        "user_id":
+                                                            userState.user.id,
                                                         "Place": widget
                                                             .destBooking!.name!,
                                                         "Date": time,
@@ -587,7 +594,9 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                             "${jml * widget.destBooking!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
-                                                        "Gambar": widget.destBooking!.imageUrl
+                                                        "Gambar": widget
+                                                            .destBooking!
+                                                            .imageUrl
                                                       });
                                                     });
                                                     Navigator.pop(context);
@@ -602,8 +611,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                 ),
                                               ],
                                             ).show();
-                                          } else if (time !=
-                                                  'Pilih Tanggal' &&
+                                          } else if (time != 'Pilih Tanggal' &&
                                               payment != 'My Nusacash' &&
                                               payment !=
                                                   'Pilih Metode\nPembayaran') {
@@ -634,7 +642,10 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                 ),
                                                 DialogButton(
                                                   onPressed: () {
-                                                    context.read<PageBloc>().add(GoToSuccessPage(userState.user));
+                                                    context
+                                                        .read<PageBloc>()
+                                                        .add(GoToSuccessPage(
+                                                            userState.user));
                                                     FirebaseFirestore.instance
                                                         .runTransaction(
                                                             (transaction) async {
@@ -645,7 +656,8 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                               .collection(
                                                                   "dataTiketDestinasi");
                                                       await reference.add({
-                                                        "user_id": userState.user.id,
+                                                        "user_id":
+                                                            userState.user.id,
                                                         "Place": widget
                                                             .destBooking!.name!,
                                                         "Date": time,
@@ -653,7 +665,9 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                             "${jml * widget.destBooking!.price!}",
                                                         "Traveler": jml,
                                                         "Payment": payment,
-                                                        "Gambar": widget.destBooking!.imageUrl
+                                                        "Gambar": widget
+                                                            .destBooking!
+                                                            .imageUrl
                                                       });
                                                     });
                                                     Navigator.pop(context);
@@ -672,7 +686,7 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                             Alert(
                                               context: context,
                                               type: AlertType.error,
-                                              title: "PAYMENT FAILED",
+                                              title: "PEMESANAN GAGAL",
                                               style: AlertStyle(
                                                 titleStyle:
                                                     blackTextStyle.copyWith(
@@ -684,10 +698,27 @@ class _DestBookingPageState extends State<DestBookingPage> {
                                                   "Periksa Tanggal atau Nusacash kamu!",
                                               buttons: [
                                                 DialogButton(
-                                                  onPressed: () => Navigator.pop(context),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
                                                   width: 120,
                                                   child: Text(
                                                     "Mengerti",
+                                                    style: GoogleFonts.poppins(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                                DialogButton(
+                                                  onPressed: () async {
+                                                    context
+                                                        .read<PageBloc>()
+                                                        .add(GoToTopUpPage(
+                                                            GoToMainPage()));
+                                                    Navigator.pop(context);
+                                                  },
+                                                  width: 120,
+                                                  child: Text(
+                                                    "Isi Ulang",
                                                     style: GoogleFonts.poppins(
                                                         color: Colors.white,
                                                         fontSize: 20),
