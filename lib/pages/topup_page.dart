@@ -158,7 +158,7 @@ class _TopUpPageState extends State<TopUpPage> {
                                 ),
                               ),
                               child: Text(
-                                "Top Up My Wallet",
+                                "Isi Ulang",
                                 style: whiteTextFont.copyWith(
                                     fontSize: 16,
                                     color: (selectedAmount > 0)

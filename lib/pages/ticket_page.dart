@@ -34,13 +34,13 @@ class _TicketPageState extends State<TicketPage> {
               tabs: [
                 Tab(
                   child: Text(
-                    'Destinasi',
+                    'Destinasi', style: TextStyle(fontSize: 14),
                   ),
                 ),
                 Tab(
-                  child: Text('Paket'),
+                  child: Text('Paket', style: TextStyle(fontSize: 14),),
                 ),
-                Tab(child: Text('Akomodasi')),
+                Tab(child: Text('Akomodasi', style: TextStyle(fontSize: 14),)),
               ],
             ),
             title: Text(

@@ -445,7 +445,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Sarana',
+                          'Transport',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -509,7 +509,7 @@ class _MenuPageState extends State<MenuPage> {
                           height: 7,
                         ),
                         Text(
-                          'Berita',
+                          'Artikel',
                           style: blueTextStyle.copyWith(
                             fontSize: 12,
                           ),

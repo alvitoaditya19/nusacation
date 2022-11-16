@@ -9,7 +9,7 @@ class DetailInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.read<PageBloc>().add(GoToMainPage());
+        context.read<PageBloc>().add(GoToInfoPage());
 
         return false;
       },
@@ -83,7 +83,7 @@ class DetailInfoPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 4),
                             child: Text(
-                              'Trending 1',
+                              'Trending',
                               style: grey3TextStyle.copyWith(
                                 fontWeight: medium,
                                 fontSize: 14,

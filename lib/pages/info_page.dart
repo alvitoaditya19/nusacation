@@ -42,7 +42,7 @@ class InfoPage extends StatelessWidget {
       onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
 
-        return true;
+        return false;
       },
       child: Scaffold(
           backgroundColor: kBackgroundColor,
@@ -61,7 +61,7 @@ class InfoPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Informasi',
+                            'Newsacation',
                             style: blackTextStyle.copyWith(
                               fontSize: 20,
                               fontWeight: medium,
