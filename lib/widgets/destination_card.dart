@@ -52,7 +52,7 @@ class DestinationCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Flores, NTT',
+                               destination!.city!,
                               style: greyTextStyle.copyWith(
                                 fontWeight: light,
                                 fontSize: 14,
@@ -67,6 +67,8 @@ class DestinationCard extends StatelessWidget {
                                 fontWeight: medium,
                                 fontSize: 16,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(
                               height: 2,

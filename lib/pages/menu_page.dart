@@ -94,7 +94,8 @@ class _MenuPageState extends State<MenuPage> {
                               'Hai, ${userState.user.name!}',
                               style: blackTextStyle.copyWith(
                                   fontWeight: medium, fontSize: 16),
-                              overflow: TextOverflow.clip,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
                             SizedBox(
                               height: 2,

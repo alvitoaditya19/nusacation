@@ -13,12 +13,14 @@ class FavoritDestinationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<PageBloc>().add(GoToDetailDestinationPage(destination!));
+        // context.read<PageBloc>().add(GoToDetailDestinationPage(destination!));
       },
       child: Stack(
         children: [
           Container(
             padding: EdgeInsets.all(12),
+            margin: EdgeInsets.only(bottom: 16),
+
             decoration: BoxDecoration(
               color: kWhiteColor,
               borderRadius: BorderRadius.circular(18),

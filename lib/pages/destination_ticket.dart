@@ -21,7 +21,7 @@ class DestinationTicket extends StatelessWidget {
                       context: context,
                       removeTop: true,
                       removeBottom: true,
-                      child: StreamBuilder(
+                      child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
                               .collection("dataTiketDestinasi")
                               .where('user_id', isEqualTo: userState.user.id)
@@ -76,7 +76,7 @@ class DestTicketList extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    right: 20.0, left: 20, top: 10, bottom: 10),
+                    right: 20.0, left: 20, bottom: 10),
                 child: ExpansionTileCard(
                   borderRadius: BorderRadius.circular(10),
                   baseColor: kWhiteColor,
@@ -99,7 +99,7 @@ class DestTicketList extends StatelessWidget {
                     margin: EdgeInsets.only(top: 4),
                     child: Text(
                       'Jadwal : ' + destTicket[index]["Date"].toString(),
-                      style: blackTextStyle.copyWith(
+                      style: grey3TextStyle.copyWith(
                         fontWeight: medium,
                         fontSize: 14,
                       ),
@@ -111,7 +111,7 @@ class DestTicketList extends StatelessWidget {
                       height: 1.0,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -127,29 +127,53 @@ class DestTicketList extends StatelessWidget {
                               SizedBox(
                                 width: 5,
                               ),
-                              Text('Tiket Ini berlaku untuk ' +
-                                  destTicket[index]["Traveler"].toString() + ' Pengunjung'),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Text(
+                                    'Tiket Ini berlaku untuk ' +
+                                        destTicket[index]["Traveler"]
+                                            .toString() +
+                                        ' Pengunjung',
+                                    style:
+                                        blackTextStyle.copyWith(fontSize: 13)),
+                              ),
                             ]),
-                            SizedBox(height: 5,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(Icons.check_circle_outline),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                Text(
-                                    'Jangan berikan QR Code ke sembarang orang!')
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.7,
+                                  child: Text(
+                                      'Jangan berikan QR Code ke sembarang orang!',
+                                      style: blackTextStyle.copyWith(
+                                          fontSize: 13)),
+                                )
                               ],
                             ),
-                            SizedBox(height: 5,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Row(
                               children: [
                                 Icon(Icons.check_circle_outline),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                Text(
-                                    'Pastikan datang tepat waktu!')
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.7,
+                                  child: Text('Pastikan datang tepat waktu!',
+                                      style: blackTextStyle.copyWith(
+                                          fontSize: 13)),
+                                )
                               ],
                             )
                           ],
@@ -190,13 +214,15 @@ class DestTicketList extends StatelessWidget {
                                 color: kBlueColor,
                               ),
                               height: 40,
-                              width: 150,
+                              width: MediaQuery.of(context).size.width / 3,
                               child: Center(
                                   child: Text(
                                 destTicket[index]["Payment"].toString(),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 243, 254, 255)),
+                                style: whiteTextStyle.copyWith(
+                                  fontWeight: medium,
+                                  fontSize: 14,
+                                ),
                               ))),
                           Container(
                               decoration: BoxDecoration(
@@ -204,13 +230,14 @@ class DestTicketList extends StatelessWidget {
                                 color: kBlueColor,
                               ),
                               height: 40,
-                              width: 150,
+                              width: MediaQuery.of(context).size.width / 3,
                               child: Center(
                                   child: Text(
                                 'Rp. ' + destTicket[index]["Price"].toString(),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 243, 254, 255),
+                                style: whiteTextStyle.copyWith(
+                                  fontWeight: medium,
+                                  fontSize: 14,
                                 ),
                               )))
                         ])
