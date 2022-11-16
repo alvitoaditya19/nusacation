@@ -7,6 +7,8 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   String name = "";
+  String nameFor = "";
+
   @override
   void initState() {
     super.initState();
