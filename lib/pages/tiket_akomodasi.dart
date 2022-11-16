@@ -138,7 +138,7 @@ class AkomTicketList extends StatelessWidget {
                                     'Tiket Ini berlaku untuk ' +
                                         akomTicket[index]["Traveler"]
                                             .toString() +
-                                        ' Pengunjung',
+                                        ' Hari',
                                     style:
                                         blackTextStyle.copyWith(fontSize: 13)),
                               ),
