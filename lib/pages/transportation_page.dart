@@ -20,6 +20,7 @@ class TransportaionPage extends StatelessWidget {
                   hotelState.transportation;
 
               return ListView.builder(
+                padding: EdgeInsets.only(bottom: 120),
                 shrinkWrap: true,
                 itemCount: transportation!.length,
                 itemBuilder: (_, index) => DestinationCard(

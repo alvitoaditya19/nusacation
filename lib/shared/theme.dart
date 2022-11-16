@@ -45,7 +45,7 @@ TextStyle yellowNumberFont =
 
 
 Color kBackgroundColor2 = Color(0xff22267B);
-Color kGreenColor = Color(0xFF66E0D4);
+Color kGreenColor = Color(0xFF12FF9C);
 Color kRedColor = Color(0xffFF5151);
 
 Color kBlueColor = Color(0xff308CF8);

@@ -77,6 +77,8 @@ class DetailDestinationPage extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: medium,
                                           ),
+                                          maxLines: 1,
+
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                         SizedBox(
@@ -88,6 +90,7 @@ class DetailDestinationPage extends StatelessWidget {
                                             fontSize: 18,
                                             fontWeight: light,
                                           ),
+                                          maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ],

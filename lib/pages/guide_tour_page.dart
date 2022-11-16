@@ -19,6 +19,8 @@ class GuideTourPage extends StatelessWidget {
               List<GuideTourModel>? guideTour = guideTourState.guideTour;
 
               return ListView.builder(
+                padding: EdgeInsets.only(bottom: 120),
+
                 shrinkWrap: true,
                 itemCount: guideTour!.length,
                 itemBuilder: (_, index) => GuideTourCard(

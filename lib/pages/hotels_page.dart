@@ -19,6 +19,7 @@ class HotelsPage extends StatelessWidget {
               List<DestinationModel>? hotel = hotelState.hotels;
 
               return ListView.builder(
+                padding: EdgeInsets.only(bottom: 120),
                 shrinkWrap: true,
                 itemCount: hotel!.length,
                 itemBuilder: (_, index) => DestinationCard(
@@ -70,6 +71,7 @@ class HotelsPage extends StatelessWidget {
                         height: 20,
                       ),
                       vacationSpot(),
+                    
                       // DestinationCard()
                     ]),
                   ),

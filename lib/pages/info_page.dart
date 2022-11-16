@@ -19,6 +19,7 @@ class InfoPage extends StatelessWidget {
               List<InfoModel>? infos = infoState.info;
 
               return ListView.builder(
+                padding: EdgeInsets.only(bottom: 120),
                 shrinkWrap: true,
                 itemCount: infos!.length,
                 itemBuilder: (_, index) => InformationCard(

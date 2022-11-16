@@ -58,13 +58,21 @@ class DetailPaketPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                paket!.name!,
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: medium,
-                                ),
-                                overflow: TextOverflow.ellipsis,
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      paket!.name!,
+                                      style: blackTextStyle.copyWith(
+                                        fontSize: 18,
+                                        fontWeight: medium,
+                                      ),
+                                          maxLines: 1,
+
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 6,
@@ -86,12 +94,15 @@ class DetailPaketPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    paket!.location!,
-                                    style: grey3TextStyle.copyWith(
-                                      fontSize: 12,
+                                  Expanded(
+                                    child: Text(
+                                      paket!.location!,
+                                      style: grey3TextStyle.copyWith(
+                                        fontSize: 12,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
                                   ),
                                   SizedBox(
                                     width: 4,
