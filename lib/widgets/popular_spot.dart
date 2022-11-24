@@ -18,7 +18,7 @@ class PopularSpot extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(imageUrl),
+          image: NetworkImage(imageUrl),
         ),
       ),
     );

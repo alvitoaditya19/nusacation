@@ -2,8 +2,10 @@ part of 'pages.dart';
 
 class DetailPaketPage extends StatelessWidget {
   final DestinationModel? paket;
+  bool _enabled = true;
 
-  const DetailPaketPage(this.paket);
+
+   DetailPaketPage(this.paket);
 
   @override
   Widget build(BuildContext context) {
@@ -330,23 +332,32 @@ class DetailPaketPage extends StatelessWidget {
                               SizedBox(
                                 height: 14,
                               ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    PopularSpot(
-                                      imageUrl: 'assets/img-spot3.png',
+                          SizedBox(
+                                    height: 90,
+                                    child: BlocBuilder<DestinationBloc,
+                                        DestinationState>(
+                                      builder: (_, destinationState) {
+                                        if (destinationState
+                                            is DestinationLoaded) {
+                                          List<DestinationModel>? destination =
+                                              destinationState.destinations;
+
+                                          return ListView.builder(
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: destination!.length,
+                                              itemBuilder: (_, index) =>
+                                                  PopularSpot(
+                                                    imageUrl: destination[index]
+                                                        .imageUrl!,
+                                                  ));
+                                        } else {
+                                          return LoadingPopularSpot(_enabled);
+                                        }
+                                      },
                                     ),
-                                    PopularSpot(
-                                      imageUrl: 'assets/img-spot2.png',
-                                    ),
-                                    PopularSpot(
-                                      imageUrl: 'assets/img-spot2.png',
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                                  )
+                               ],
                           ),
                         ),
                         Container(

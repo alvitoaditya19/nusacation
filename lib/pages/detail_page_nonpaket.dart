@@ -2,6 +2,7 @@ part of 'pages.dart';
 
 class DetailDestinationPage extends StatelessWidget {
   final DestinationModel? destination;
+  bool _enabled = true;
 
   DetailDestinationPage(this.destination);
 
@@ -78,7 +79,6 @@ class DetailDestinationPage extends StatelessWidget {
                                             fontWeight: medium,
                                           ),
                                           maxLines: 1,
-
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                         SizedBox(
@@ -223,20 +223,29 @@ class DetailDestinationPage extends StatelessWidget {
                                   SizedBox(
                                     height: 14,
                                   ),
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        PopularSpot(
-                                          imageUrl: 'assets/img-spot3.png',
-                                        ),
-                                        PopularSpot(
-                                          imageUrl: 'assets/img-spot2.png',
-                                        ),
-                                        PopularSpot(
-                                          imageUrl: 'assets/img-spot2.png',
-                                        ),
-                                      ],
+                                  SizedBox(
+                                    height: 90,
+                                    child: BlocBuilder<DestinationBloc,
+                                        DestinationState>(
+                                      builder: (_, destinationState) {
+                                        if (destinationState
+                                            is DestinationLoaded) {
+                                          List<DestinationModel>? destination =
+                                              destinationState.destinations;
+
+                                          return ListView.builder(
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: destination!.length,
+                                              itemBuilder: (_, index) =>
+                                                  PopularSpot(
+                                                    imageUrl: destination[index]
+                                                        .imageUrl!,
+                                                  ));
+                                        } else {
+                                          return LoadingPopularSpot(_enabled);
+                                        }
+                                      },
                                     ),
                                   )
                                 ],
@@ -434,8 +443,9 @@ class DetailDestinationPage extends StatelessWidget {
                               alignment: Alignment.center,
                               child: TextButton(
                                 onPressed: () {
-                                   context.read<PageBloc>().add(
-                                       GoToDestBookingPage(destination!));
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToDestBookingPage(destination!));
                                 },
                                 style: TextButton.styleFrom(
                                   minimumSize: const Size.fromHeight(54),

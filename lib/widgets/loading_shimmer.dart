@@ -62,7 +62,6 @@ class LoadingShimmer extends StatelessWidget {
   }
 }
 
-
 class LoadingShimmerRecommended extends StatelessWidget {
   final bool enabled;
   const LoadingShimmerRecommended(this.enabled, {super.key});
@@ -89,7 +88,6 @@ class LoadingShimmerRecommended extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-
               ],
             ),
           ),
@@ -158,6 +156,38 @@ class LoadingShimmerSearch extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+          itemCount: 6,
+        ),
+      ),
+    );
+  }
+}
+
+class LoadingPopularSpot extends StatelessWidget {
+  final bool enabled;
+  const LoadingPopularSpot(this.enabled, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin:
+          EdgeInsets.only(top: 4, left: defaultMargin, right: defaultMargin),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        enabled: enabled,
+        child: ListView.builder(
+          itemBuilder: (_, __) => Padding(
+            padding: const EdgeInsets.only(right: 24.0),
+            child: Container(
+              width: 110,
+              height: 88,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.white,
+              ),
             ),
           ),
           itemCount: 6,
